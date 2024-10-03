@@ -24,15 +24,17 @@ namespace EjerciciosInterfaces
                             new Ejercicio1().CantidadVocales();
                             break;
                         case 2:
+                            new Ejercicio2().ValidarPin();
                             break;
                         case 3:
+                            new Ejercicio3().CalcularRepeticiones();
                             break;
                         case 0:
                             Console.WriteLine("Saliendo...");
+                            return;
                             break;
                         default:
                             Console.WriteLine("Opción no válida, intente nuevamente.");
-                            return;
                             break;
                     }
                 }

@@ -1,8 +1,11 @@
 ﻿using System;
+//Haz una función que calcule y devuelva el número de vocales en la
+//cadena dada. Consideraremos a, e, i, o, u como vocales. La cadena de
+//entrada sólo consta de letras minúsculas y/o espacios.
 
 public class Ejercicio1
 {
-    public void CantidadVocales()
+    public int CantidadVocales()
     {
         Console.WriteLine("Por favor, ingrese una palabra:");
         string palabra = Console.ReadLine();
@@ -16,5 +19,6 @@ public class Ejercicio1
             }
         }
     Console.WriteLine("La palabra " + palabra + " tiene "+ numVocales +" vocales");
+        return numVocales;
     }
 }
