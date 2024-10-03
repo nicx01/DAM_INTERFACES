@@ -14,6 +14,7 @@ namespace EjerciciosInterfaces
                 Console.WriteLine("1. Ejercicio 1");
                 Console.WriteLine("2. Ejercicio 2");
                 Console.WriteLine("3. Ejercicio 3");
+                Console.WriteLine("4. Ejercicio 4");
                 Console.Write("Ingrese su opción: ");
 
                 if (int.TryParse(Console.ReadLine(), out opcion))
@@ -29,10 +30,12 @@ namespace EjerciciosInterfaces
                         case 3:
                             new Ejercicio3().CalcularRepeticiones();
                             break;
+                        case 4:
+                            new Ejercicio4().RecogerAparicionesImpares();
+                            break;
                         case 0:
                             Console.WriteLine("Saliendo...");
                             return;
-                            break;
                         default:
                             Console.WriteLine("Opción no válida, intente nuevamente.");
                             break;
