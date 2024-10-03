@@ -8,13 +8,14 @@ namespace EjerciciosInterfaces
         {
             int opcion;
 
-            do
+            while (true)
             {
                 Console.WriteLine("Seleccione un ejercicio o 0 para salir:");
                 Console.WriteLine("1. Ejercicio 1");
                 Console.WriteLine("2. Ejercicio 2");
                 Console.WriteLine("3. Ejercicio 3");
                 Console.WriteLine("4. Ejercicio 4");
+                Console.WriteLine("5. Ejercicio 5");
                 Console.Write("Ingrese su opción: ");
 
                 if (int.TryParse(Console.ReadLine(), out opcion))
@@ -33,6 +34,9 @@ namespace EjerciciosInterfaces
                         case 4:
                             new Ejercicio4().RecogerAparicionesImpares();
                             break;
+                        case 5:
+                            new Ejercicio5().DevolverSinRepetidos();
+                            break;
                         case 0:
                             Console.WriteLine("Saliendo...");
                             return;
@@ -48,7 +52,7 @@ namespace EjerciciosInterfaces
 
                 Console.WriteLine();
 
-            } while (true);
+            };
         }
     }
 }
