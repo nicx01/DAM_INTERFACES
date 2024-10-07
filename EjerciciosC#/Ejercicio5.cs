@@ -11,17 +11,18 @@ public class Ejercicio5
     {
         Console.WriteLine("Por favor, ingrese una secuencia de caracteres:");
         string secuencia = Console.ReadLine();
-        for (int i = 0; secuencia.Length > i; i++)
+        HashSet<char> seen = new HashSet<char>();
+        List<char> result = new List<char>();
+
+        foreach (char c in secuencia)
         {
-            for (int j = 0; j < i; j++)
+            if (!seen.Contains(c))
             {
-                if (secuencia[j] == secuencia[i])
-                {
-                    secuencia = secuencia.Remove(i);
-                    break;
-                }
+                seen.Add(c);
+                result.Add(c);
             }
         }
-        Console.WriteLine("La secuencia sin repeticiones es "+secuencia);
+        string resultadoFinal = new string(result.ToArray());
+        Console.WriteLine("La secuencia sin repeticiones es "+ resultadoFinal);
     }
 }

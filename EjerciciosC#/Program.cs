@@ -16,6 +16,7 @@ namespace EjerciciosInterfaces
                 Console.WriteLine("3. Ejercicio 3");
                 Console.WriteLine("4. Ejercicio 4");
                 Console.WriteLine("5. Ejercicio 5");
+                Console.WriteLine("6. Ejercicio 6");
                 Console.Write("Ingrese su opción: ");
 
                 if (int.TryParse(Console.ReadLine(), out opcion))
@@ -36,6 +37,9 @@ namespace EjerciciosInterfaces
                             break;
                         case 5:
                             new Ejercicio5().DevolverSinRepetidos();
+                            break;
+                        case 6:
+                            new Ejercicio6().CalcularPersistenciaMultiplicativa();
                             break;
                         case 0:
                             Console.WriteLine("Saliendo...");
