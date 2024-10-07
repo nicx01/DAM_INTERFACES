@@ -8,4 +8,8 @@
     <Nullable>enable</Nullable>
   </PropertyGroup>
 
+  <ItemGroup>
+    <Compile Remove="Ejercicio10 - Copia.cs" />
+  </ItemGroup>
+
 </Project>
