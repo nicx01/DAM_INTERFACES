@@ -9,7 +9,7 @@ public class Ejercicio5
 {
     public void DevolverSinRepetidos()
     {
-        Console.WriteLine("Por favor, ingrese una secuencia de caracteres:");
+        Console.WriteLine("Por favor, ingrese una frase:");
         string secuencia = Console.ReadLine();
         HashSet<char> seen = new HashSet<char>();
         List<char> result = new List<char>();
