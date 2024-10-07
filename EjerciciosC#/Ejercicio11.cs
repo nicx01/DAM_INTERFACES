@@ -12,6 +12,7 @@ public class Ejercicio11
         Console.WriteLine("Dame un numero positivo");
         string input = Console.ReadLine();
         int numero = int.Parse(input);
+        bool encontrado = false;
         
         if (numero > 0)
         {
@@ -27,14 +28,14 @@ public class Ejercicio11
                             if (numero == a*a + b*b + c*c + d*d)
                             {
                                 System.Console.WriteLine("Los numeros son " + a + " " + b + " " + c + " " + d);
-                                return;
+                                encontrado = true;
                             }
 
                         }
                     }
                 }
             }
-            Console.WriteLine("El teorema no se cumple :c");
+            if (!encontrado) { Console.WriteLine("El teorema no se cumple :c"); }
         }
         else
         {
