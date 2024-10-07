@@ -18,6 +18,9 @@ namespace EjerciciosInterfaces
                 Console.WriteLine("5. Ejercicio 5");
                 Console.WriteLine("6. Ejercicio 6");
                 Console.WriteLine("7. Ejercicio 7");
+                Console.WriteLine("7. Ejercicio 7");
+                Console.WriteLine("9. Ejercicio 9");
+                Console.WriteLine("10. Ejercicio 10");
                 Console.Write("Ingrese su opción: ");
 
                 if (int.TryParse(Console.ReadLine(), out opcion))
@@ -44,6 +47,12 @@ namespace EjerciciosInterfaces
                             break;
                         case 7:
                             new Ejercicio7().CalcularIndiceDelMedio();
+                            break;
+                        case 9:
+                            new Ejercicio9().ReordenarDigitos();
+                            break;
+                        case 10:
+                            new Ejercicio10().CalcularUnosBinario();
                             break;
                         case 0:
                             Console.WriteLine("Saliendo...");
