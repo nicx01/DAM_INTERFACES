@@ -19,6 +19,7 @@ namespace EjerciciosInterfaces
                 Console.WriteLine("6. Ejercicio 6");
                 Console.WriteLine("7. Ejercicio 7");
                 Console.WriteLine("7. Ejercicio 7");
+                Console.WriteLine("8. Ejercicio 8");
                 Console.WriteLine("9. Ejercicio 9");
                 Console.WriteLine("10. Ejercicio 10");
                 Console.WriteLine("11. Ejercicio 11");
@@ -48,6 +49,9 @@ namespace EjerciciosInterfaces
                             break;
                         case 7:
                             new Ejercicio7().CalcularIndiceDelMedio();
+                            break;
+                        case 8:
+                            new Ejercicio8().DiferenciaArrays();
                             break;
                         case 9:
                             new Ejercicio9().ReordenarDigitos();

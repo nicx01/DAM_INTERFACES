@@ -24,7 +24,6 @@ public class Ejercicio11
                     {
                         for (int d = 0; d*d <= numero; d++)
                         {
-
                             if (numero == a*a + b*b + c*c + d*d)
                             {
                                 System.Console.WriteLine("Los numeros son " + a + " " + b + " " + c + " " + d);
