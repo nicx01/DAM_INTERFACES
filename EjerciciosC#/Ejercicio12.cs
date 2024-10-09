@@ -6,7 +6,6 @@ using System.Linq;
 //menos que la anterior, se generan considerando los dos colores que se
 //tocan en la fila anterior.
 
-
 public class Ejercicio12
 {
     public void ColorearTriangulo()
@@ -19,7 +18,6 @@ public class Ejercicio12
         {
             while (secuencia.Length > 0)
             {
-                Console.WriteLine();
                 secuencia = nuevaLinea;
                 nuevaLinea = "";
                 for (int i = 0; i < secuencia.Length - 1; i += 2)
@@ -50,6 +48,7 @@ public class Ejercicio12
                         return;
                     }
                 }
+                Console.WriteLine();
             }
         }
         else
