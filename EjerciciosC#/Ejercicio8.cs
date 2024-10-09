@@ -21,20 +21,22 @@ public class Ejercicio8
         string numeros2 = Console.ReadLine();
         string[] partes2 = numeros2.Split(',');
         int[] arrayNumeros2 = partes2.Select(int.Parse).ToArray();
+
         bool ambas = false;
-        for (int i = 0; i < arrayNumeros2.Length; i++)
+
+        for (int i = 0; i < arrayNumeros1.Length; i++)
             {
-                for (int j = 0; j < arrayNumeros1.Length; j++)
+                for (int j = 0; j < arrayNumeros2.Length; j++)
                 {
-                    if (arrayNumeros1[j] != arrayNumeros2[i])
+                    if (arrayNumeros1[i] == arrayNumeros2[j])
                     {
                         ambas= true;
                         break;
                     }
                 }
-            if (ambas)
+            if (!ambas)
             {
-                Console.Write(arrayNumeros2[i]+" ");
+                Console.Write(arrayNumeros1[i]+" ");
             }
             ambas = false;
             }
