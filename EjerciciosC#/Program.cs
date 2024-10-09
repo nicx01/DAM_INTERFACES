@@ -23,6 +23,7 @@ namespace EjerciciosInterfaces
                 Console.WriteLine("9. Ejercicio 9");
                 Console.WriteLine("10. Ejercicio 10");
                 Console.WriteLine("11. Ejercicio 11");
+                Console.WriteLine("12. Ejercicio 12");
                 Console.Write("Ingrese su opción: ");
 
                 if (int.TryParse(Console.ReadLine(), out opcion))
@@ -61,6 +62,9 @@ namespace EjerciciosInterfaces
                             break;
                         case 11:
                             new Ejercicio11().CalcularBachet();
+                            break;
+                        case 12:
+                            new Ejercicio12().ColorearTriangulo();
                             break;
                         case 0:
                             Console.WriteLine("Saliendo...");
