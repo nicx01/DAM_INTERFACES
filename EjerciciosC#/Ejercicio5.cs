@@ -23,6 +23,6 @@ public class Ejercicio5
             }
         }
         string resultadoFinal = new string(result.ToArray());
-        Console.WriteLine("La secuencia sin repeticiones es "+ resultadoFinal);
+        Console.WriteLine("La secuencia sin repeticiones es " + resultadoFinal);
     }
 }

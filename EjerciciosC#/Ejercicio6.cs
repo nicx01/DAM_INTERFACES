@@ -15,13 +15,13 @@ public class Ejercicio6
         int persistencia = 0;
         int multiplicacion = int.MaxValue;
         int copyNumero = numero;
-        while (multiplicacion >= 10 && copyNumero>=10)
+        while (multiplicacion >= 10 && copyNumero >= 10)
         {
             multiplicacion = 1;
             while (copyNumero > 0)
             {
-                multiplicacion=multiplicacion*(copyNumero%10);
-                copyNumero = copyNumero/10;
+                multiplicacion = multiplicacion * (copyNumero % 10);
+                copyNumero = copyNumero / 10;
             }
             copyNumero = multiplicacion;
             persistencia++;

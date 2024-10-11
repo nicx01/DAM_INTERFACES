@@ -25,20 +25,20 @@ public class Ejercicio8
         bool ambas = false;
 
         for (int i = 0; i < arrayNumeros1.Length; i++)
+        {
+            for (int j = 0; j < arrayNumeros2.Length; j++)
             {
-                for (int j = 0; j < arrayNumeros2.Length; j++)
+                if (arrayNumeros1[i] == arrayNumeros2[j])
                 {
-                    if (arrayNumeros1[i] == arrayNumeros2[j])
-                    {
-                        ambas= true;
-                        break;
-                    }
+                    ambas = true;
+                    break;
                 }
+            }
             if (!ambas)
             {
-                Console.Write(arrayNumeros1[i]+" ");
+                Console.Write(arrayNumeros1[i] + " ");
             }
             ambas = false;
-            }
         }
+    }
 }

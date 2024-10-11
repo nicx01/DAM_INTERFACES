@@ -29,7 +29,7 @@ public class Ejercicio4
         Console.WriteLine("Estos numeros tienen apariciones impares:");
         foreach (var par in conteo)
         {
-            if (par.Value%2==1 )
+            if (par.Value % 2 == 1)
             {
                 Console.WriteLine(par.Key);
 

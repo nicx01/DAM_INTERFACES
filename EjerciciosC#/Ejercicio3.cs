@@ -40,7 +40,7 @@ public class Ejercicio3
                 numeroMenosFrecuente = par.Key;
             }
         }
-        Console.WriteLine("El numero minimo de apariciones es "+minFrecuencia+" y el mas pequeño de ellos es "+numeroMenosFrecuente);
+        Console.WriteLine("El numero minimo de apariciones es " + minFrecuencia + " y el mas pequeño de ellos es " + numeroMenosFrecuente);
         return minFrecuencia;
     }
 }

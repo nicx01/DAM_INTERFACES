@@ -22,13 +22,13 @@ public class Ejercicio10
                 if (numero % 2 == 1) { unos++; }
                 numero = numero / 2;
             }
-            Console.WriteLine("El numero tiene "+unos+" uno(s)");
+            Console.WriteLine("El numero tiene " + unos + " uno(s)");
         }
         else
         {
             Console.WriteLine("El numero no es positivo");
         }
 
-       
+
     }
 }

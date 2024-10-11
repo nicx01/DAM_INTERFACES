@@ -9,7 +9,7 @@ public class Ejercicio1
     {
         Console.WriteLine("Por favor, ingrese una palabra:");
         string palabra = Console.ReadLine();
-        char[] vocales = {'a', 'e', 'i', 'o', 'u'};
+        char[] vocales = { 'a', 'e', 'i', 'o', 'u' };
         int numVocales = 0;
         for (int i = 0; i < palabra.Length; i++)
         {
@@ -18,7 +18,7 @@ public class Ejercicio1
                 numVocales++;
             }
         }
-    Console.WriteLine("La palabra " + palabra + " tiene "+ numVocales +" vocales");
+        Console.WriteLine("La palabra " + palabra + " tiene " + numVocales + " vocales");
         return numVocales;
     }
 }

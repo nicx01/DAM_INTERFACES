@@ -17,7 +17,7 @@ public class Ejercicio7
         string numeros = Console.ReadLine();
         string[] partes = numeros.Split(',');
         int[] arrayNumeros = partes.Select(int.Parse).ToArray();
-        int sumaIzquierda=0, sumaDerecha = 0;
+        int sumaIzquierda = 0, sumaDerecha = 0;
         if (arrayNumeros.Length > 2)
         {
             for (int i = 1; i < arrayNumeros.Length - 1; i++)
@@ -26,21 +26,21 @@ public class Ejercicio7
                 sumaDerecha = 0;
                 for (int j = 0; j < i; j++)
                 {
-                    sumaIzquierda +=arrayNumeros[j];
+                    sumaIzquierda += arrayNumeros[j];
                 }
-                for (int k = i+1; k < arrayNumeros.Length; k++)
+                for (int k = i + 1; k < arrayNumeros.Length; k++)
                 {
                     sumaDerecha += arrayNumeros[k];
                 }
                 if (sumaIzquierda == sumaDerecha)
                 {
-                    Console.WriteLine("El indice de el medio es "+i);
+                    Console.WriteLine("El indice de el medio es " + i);
                     return;
                 }
             }
             Console.WriteLine("No se ha encontrado resultado");
             return;
         }
-         Console.WriteLine("Minimo 3 de largo");
+        Console.WriteLine("Minimo 3 de largo");
     }
 }
