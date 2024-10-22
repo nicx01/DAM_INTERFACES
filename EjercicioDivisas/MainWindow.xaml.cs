@@ -17,6 +17,7 @@ namespace WpfApp1
     {
         public float euroDolar = 1.05f;
         public float libraDolar = 1.30f;
+        public char[] currencySymbols = { '€', '$', '£' };
         private void ConvertirImporte(object sender, RoutedEventArgs e)
         {
             float value = float.Parse(textImporte.Text);
@@ -62,10 +63,22 @@ namespace WpfApp1
                 }
             }
             resultBox.Text = result.ToString("F2");
-            var historico = history.Text;
-            var fechaHora = DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss"); 
+            var divisaDeSeleccionada = currencySymbols[divisaDe];
+            var divisaASeleccionada = currencySymbols[divisaA];
+            var fechaHora = DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss");
             var resultadoFormateado = result.ToString("F2");
-            history.Text = historico + "\n" + $"{fechaHora} - {resultadoFormateado}";
+            var origenFormateado = value.ToString("F2");
+
+            var nuevaEntrada = $"{fechaHora} - {origenFormateado} {divisaDeSeleccionada} → {resultadoFormateado} {divisaASeleccionada}";
+            var historico = history.Text;
+
+            var lineas = historico.Split(new[] { '\n' }, StringSplitOptions.RemoveEmptyEntries);
+            if (lineas.Length >= 5)
+            {
+                historico = string.Join("\n", lineas, 1, lineas.Length - 1);
+            }
+
+            history.Text = historico + "\n" + nuevaEntrada;
 
         }
 

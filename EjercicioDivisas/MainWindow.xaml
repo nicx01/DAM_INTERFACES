@@ -117,23 +117,18 @@
                  IsReadOnly="True" 
                  BorderBrush="#C5C5C5"/>
 
-        <Border HorizontalAlignment="Stretch" 
-        VerticalAlignment="Bottom" 
-        Margin="0,10,0,40" 
-        Height="1" 
-        Background="#C5C5C5"/>
-
         <ScrollViewer VerticalScrollBarVisibility="Auto"
-               HorizontalAlignment="Stretch"
-               VerticalAlignment="Bottom"
-               Margin="0,10,0,10">
-            <TextBlock Text="{Binding HistoryText}" 
-               Name="history"
-               FontSize="18" 
-               FontWeight="Bold" 
-               Foreground="#333"
-               TextWrapping="Wrap"/>
+                      HorizontalAlignment="Center"
+                      VerticalAlignment="Bottom"
+                      Width="900"
+                      Height="150"
+                      Margin="0,0,0,10">
+            <TextBlock Name="history"
+                       FontSize="18" 
+                       FontWeight="Bold" 
+                       Foreground="#333"
+                       TextWrapping="Wrap"
+                       VerticalAlignment="Top"/>
         </ScrollViewer>
-
     </Grid>
 </Window>
