@@ -23,45 +23,15 @@ namespace WpfApp1
             float value = float.Parse(textImporte.Text);
             int divisaDe = selectDe.SelectedIndex;
             int divisaA = selectA.SelectedIndex;
-            float result=0.00f;
+            float result = 0.00f;
             //0 Euro, 1 Dolar, 2 Libra
-            if (divisaDe == divisaA)
-            {
-                result = value;
-            }
-            else if (divisaDe == 0)
-            {
-                if (divisaA == 1)
-                {
-                    result = value * euroDolar;
-                }
-                else if (divisaA == 2)
-                {
-                    result = value * euroDolar / libraDolar;
-                }
-            }
-            else if (divisaDe == 1)
-            {
-                if (divisaA == 0)
-                {
-                    result = value * 1 / euroDolar;
-                }
-                else if (divisaA == 2)
-                {
-                    result = value * 1 / libraDolar;
-                }
-            }
-            else if (divisaDe == 2)
-            {
-                if (divisaA == 0)
-                {
-                    result = value * libraDolar / euroDolar;
-                }
-                else if (divisaA == 1)
-                {
-                    result = value * libraDolar;
-                }
-            }
+            float[,] conversionRates = {
+                { 1, euroDolar, euroDolar / libraDolar },      
+                { 1 / euroDolar, 1, 1 / libraDolar },          
+                { libraDolar / euroDolar, libraDolar, 1 }      
+            };
+            result = value * conversionRates[divisaDe, divisaA];
+
             resultBox.Text = result.ToString("F2");
             var divisaDeSeleccionada = currencySymbols[divisaDe];
             var divisaASeleccionada = currencySymbols[divisaA];
