@@ -1,0 +1,27 @@
+﻿<UserControl
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:vm="clr-namespace:CambioDivisa.ViewModel"
+             xmlns:av="http://schemas.microsoft.com/expression/blend/2008" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" mc:Ignorable="av" x:Class="CambioDivisa.View.FileView"
+             DataContext="{Binding RelativeSource={RelativeSource Mode=Self}}"
+             Background="AliceBlue" av:DesignHeight="3.12" av:DesignWidth="3.375">
+
+    <StackPanel Orientation="Vertical">
+        <ItemsControl ItemsSource="{Binding FilesAndDirectories}">
+            <ItemsControl.ItemTemplate>
+                <DataTemplate>
+                    <StackPanel Orientation="Vertical" HorizontalAlignment="Center">
+                        <!-- Icono de documento o carpeta -->
+                        <Image Width="50" Height="50">
+                            <Image.Source>
+                                <BitmapImage UriSource="{Binding Converter={StaticResource FileIconConverter}}" />
+                            </Image.Source>
+                        </Image>
+                        <!-- Nombre del archivo o directorio -->
+                        <TextBlock Text="{Binding Name}" TextAlignment="Center" />
+                    </StackPanel>
+                </DataTemplate>
+            </ItemsControl.ItemTemplate>
+        </ItemsControl>
+    </StackPanel>
+</UserControl>
