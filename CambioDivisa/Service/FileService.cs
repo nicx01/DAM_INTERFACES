@@ -5,7 +5,7 @@ namespace CambioDivisa.Service
 {
     public class FileService
     {
-        private readonly string _filesDirectory = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "FILES");
+        private readonly string _filesDirectory = Path.Combine(Directory.GetCurrentDirectory(), "FILES");
 
         public FileService()
         {

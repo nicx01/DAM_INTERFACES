@@ -5,7 +5,7 @@ using CommunityToolkit.Mvvm.ComponentModel;
 
 namespace CambioDivisa.ViewModel
 {
-    public partial class FileViewModel : ObservableObject
+    public partial class FileViewModel : ViewModelBase
     {
         private readonly FileService _fileService;
 
@@ -15,6 +15,11 @@ namespace CambioDivisa.ViewModel
         {
             _fileService = fileService;
             FilesAndDirectories = new ObservableCollection<FileSystemInfo>(_fileService.GetFilesAndDirectories());
+        }
+
+        public override Task LoadAsync()
+        {
+            return base.LoadAsync();
         }
     }
 }
