@@ -9,9 +9,7 @@
              mc:Ignorable="d"
              Background="White">
 
-    <!-- Vista que ajusta la escala del contenido proporcionalmente -->
     <Grid HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
-        <!-- Definir las filas y columnas para ocupar todo el espacio -->
         <Grid.RowDefinitions>
             <RowDefinition Height="*"/>
             <RowDefinition Height="*"/>
@@ -22,17 +20,17 @@
             <ColumnDefinition Width="*"/>
         </Grid.ColumnDefinitions>
 
-        <!-- Las imágenes ocupan todo el espacio y se distorsionan para llenar la celda -->
         <Image Grid.Row="0" Grid.Column="0" Source="/Resources/messiChiqui.jpg" Stretch="Fill"/>
         <Image Grid.Row="0" Grid.Column="1" Source="/Resources/coche.jpg" Stretch="Fill"/>
         <Image Grid.Row="1" Grid.Column="0" Source="/Resources/naruto.jpeg" Stretch="Fill"/>
         <Image Grid.Row="1" Grid.Column="1" Source="/Resources/unabomber.jpg" Stretch="Fill"/>
 
-        <!-- Texto centrado sobre las imágenes -->
-        <TextBlock Text="Nicolás Sáez de Ojer 2º DAM"
-                   VerticalAlignment="Top"
-                   HorizontalAlignment="Left"
-                   FontSize="30"
-                   Foreground="Black" Margin="0,52,0,0" Height="100" Width="676"/>
+        <Viewbox Grid.RowSpan="2" Grid.ColumnSpan="2" HorizontalAlignment="Center" VerticalAlignment="Center">
+            <TextBlock Text="Nicolás Sáez de Ojer 2º DAM"
+                       VerticalAlignment="Center"
+                       HorizontalAlignment="Center"
+                       FontSize="30"
+                       Foreground="Black"/>
+        </Viewbox>
     </Grid>
 </UserControl>
