@@ -63,19 +63,9 @@ namespace CambioDivisa {
         /// <summary>
         ///   Busca un recurso adaptado de tipo System.Byte[].
         /// </summary>
-        internal static byte[] black {
+        internal static byte[] coche {
             get {
-                object obj = ResourceManager.GetObject("black", resourceCulture);
-                return ((byte[])(obj));
-            }
-        }
-        
-        /// <summary>
-        ///   Busca un recurso adaptado de tipo System.Byte[].
-        /// </summary>
-        internal static byte[] double_arrow {
-            get {
-                object obj = ResourceManager.GetObject("double_arrow", resourceCulture);
+                object obj = ResourceManager.GetObject("coche", resourceCulture);
                 return ((byte[])(obj));
             }
         }
@@ -93,9 +83,9 @@ namespace CambioDivisa {
         /// <summary>
         ///   Busca un recurso adaptado de tipo System.Byte[].
         /// </summary>
-        internal static byte[] IES_Comercio {
+        internal static byte[] messiChiqui {
             get {
-                object obj = ResourceManager.GetObject("IES_Comercio", resourceCulture);
+                object obj = ResourceManager.GetObject("messiChiqui", resourceCulture);
                 return ((byte[])(obj));
             }
         }
@@ -121,25 +111,12 @@ namespace CambioDivisa {
         }
         
         /// <summary>
-        ///   Busca una cadena traducida similar a MC - Officer Psyker 	
-        ///[~alternatives]		
-        ///HW - Voidborn [~Hive World, Imperial World]			
-        ///O - Sancioned Psyker - Santic			
-        ///T - Coercion [~Persuasion]     DH - Logic			
-        ///AT - Officer			
-        ///Cha - Fel +2, WP +2, ~Tgh +1, ~Agi +1			
-        ///			
-        ///2: Coe [~Any convo Per/Com]			
-        ///3: 			
-        ///4: Seize the Initiative			
-        ///5: Fel, Jinx [~Psalms of Heroes(bugged atm) or another HW talent			
-        ///6: More than Possible [~Focus, Steel Resolve], Fel			
-        ///7: Shield of the Emperor [~Air of Authority], Still Mind			
-        ///8: Personal Oversight [St [resto de la cadena truncado]&quot;;.
+        ///   Busca un recurso adaptado de tipo System.Byte[].
         /// </summary>
-        internal static string Yap {
+        internal static byte[] unabomber {
             get {
-                return ResourceManager.GetString("Yap", resourceCulture);
+                object obj = ResourceManager.GetObject("unabomber", resourceCulture);
+                return ((byte[])(obj));
             }
         }
     }

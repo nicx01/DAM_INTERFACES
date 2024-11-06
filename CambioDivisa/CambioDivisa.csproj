@@ -9,24 +9,32 @@
 	</PropertyGroup>
 
 	<ItemGroup>
+		<None Remove="Resources\coche.jpg" />
 		<None Remove="Resources\folder.png" />
 		<None Remove="Resources\messi.jpg" />
+		<None Remove="Resources\messiChiqui.jpg" />
 		<None Remove="Resources\naruto.jpeg" />
-		<None Remove="Resources\png-double-arrows-file-double-arrow-svg-1280-119935319.png" />
 		<None Remove="Resources\txt.png" />
+		<None Remove="Resources\unabomber.jpg" />
 	</ItemGroup>
 
 	<ItemGroup>
+		<Resource Include="Resources\coche.jpg">
+		  <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+		</Resource>
 		<Resource Include="Resources\folder.png">
+		  <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+		</Resource>
+		<Resource Include="Resources\messiChiqui.jpg">
 		  <CopyToOutputDirectory>Always</CopyToOutputDirectory>
 		</Resource>
 		<Resource Include="Resources\naruto.jpeg">
 		  <CopyToOutputDirectory>Always</CopyToOutputDirectory>
 		</Resource>
-		<Resource Include="Resources\png-double-arrows-file-double-arrow-svg-1280-119935319.png">
-			<CopyToOutputDirectory>Always</CopyToOutputDirectory>
-		</Resource>
 		<Resource Include="Resources\txt.png">
+		  <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+		</Resource>
+		<Resource Include="Resources\unabomber.jpg">
 		  <CopyToOutputDirectory>Always</CopyToOutputDirectory>
 		</Resource>
 	</ItemGroup>
