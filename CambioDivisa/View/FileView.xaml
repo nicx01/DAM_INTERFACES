@@ -9,19 +9,24 @@
              xmlns:viewmodel="clr-namespace:CambioDivisa.ViewModel" 
              d:DataContext="{d:DesignInstance Type=viewmodel:FileViewModel}"
              mc:Ignorable="d">
+
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="*"/>
-            <ColumnDefinition Width="300"/>
         </Grid.ColumnDefinitions>
 
-        <ListBox ItemsSource="{Binding FilesAndDirectories}" 
-                 Grid.Column="0"
-                 Margin="10">
+        <ListBox ItemsSource="{Binding FilesAndDirectories}" Grid.Column="0">
+            <ListBox.ContextMenu>
+                <ContextMenu>
+                    <MenuItem Header="Crear Archivo" Command="{Binding CreateFileCommand}" />
+                    <MenuItem Header="Crear Directorio" Command="{Binding CreateDirectoryCommand}" />
+                </ContextMenu>
+            </ListBox.ContextMenu>
+
             <ListBox.ItemTemplate>
                 <DataTemplate>
                     <StackPanel Orientation="Horizontal">
-                        <Image Width="16" Height="16" Margin="0,0,5,0">
+                        <Image Width="64" Height="64">
                             <Image.Style>
                                 <Style TargetType="Image">
                                     <Setter Property="Source" Value="/Resources/folder.png"/>
@@ -38,6 +43,5 @@
                 </DataTemplate>
             </ListBox.ItemTemplate>
         </ListBox>
-
     </Grid>
 </UserControl>

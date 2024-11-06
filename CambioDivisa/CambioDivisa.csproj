@@ -10,10 +10,8 @@
 
 	<ItemGroup>
 		<None Remove="Resources\folder.png" />
-		<None Remove="Resources\IES_Comercio.jpg" />
 		<None Remove="Resources\messi.jpg" />
 		<None Remove="Resources\naruto.jpeg" />
-		<None Remove="Resources\nTwzv3B-605556985.jpg" />
 		<None Remove="Resources\png-double-arrows-file-double-arrow-svg-1280-119935319.png" />
 		<None Remove="Resources\txt.png" />
 	</ItemGroup>
@@ -22,14 +20,8 @@
 		<Resource Include="Resources\folder.png">
 		  <CopyToOutputDirectory>Always</CopyToOutputDirectory>
 		</Resource>
-		<Resource Include="Resources\IES_Comercio.jpg">
-			<CopyToOutputDirectory>Always</CopyToOutputDirectory>
-		</Resource>
 		<Resource Include="Resources\naruto.jpeg">
 		  <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-		</Resource>
-		<Resource Include="Resources\nTwzv3B-605556985.jpg">
-			<CopyToOutputDirectory>Always</CopyToOutputDirectory>
 		</Resource>
 		<Resource Include="Resources\png-double-arrows-file-double-arrow-svg-1280-119935319.png">
 			<CopyToOutputDirectory>Always</CopyToOutputDirectory>

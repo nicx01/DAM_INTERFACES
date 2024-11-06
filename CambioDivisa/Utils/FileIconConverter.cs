@@ -10,9 +10,9 @@ namespace CambioDivisa.Utils
         public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
         {
             if (value is DirectoryInfo)
-                return "Icons/folder_icon.png"; // Ruta del icono de carpeta
+                return "Icons/folder_icon.png"; 
             else
-                return "Icons/file_icon.png"; // Ruta del icono de archivo
+                return "Icons/file_icon.png"; 
         }
 
         public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)

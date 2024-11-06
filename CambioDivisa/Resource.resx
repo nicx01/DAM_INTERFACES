@@ -118,18 +118,6 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
-  <data name="double_arrow" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>Resources\png-double-arrows-file-double-arrow-svg-1280-119935319.png;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="IES_Comercio" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>Resources\IES_Comercio.jpg;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="black" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>Resources\nTwzv3B-605556985.jpg;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="Yap" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>Resources\Yap.txt;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;utf-8</value>
-  </data>
   <data name="naruto" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>Resources\naruto.jpeg;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>

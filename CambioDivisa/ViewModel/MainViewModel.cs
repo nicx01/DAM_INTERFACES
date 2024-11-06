@@ -12,9 +12,8 @@ namespace CambioDivisa.ViewModel
     {
         private ViewModelBase? _selectedViewModel;
 
-        public MainViewModel(CambioDivisaViewModel cambioDivisa, HistoricoCambioDivisaViewModel historicoCambio, FileViewModel file)
+        public MainViewModel(HistoricoCambioDivisaViewModel historicoCambio, FileViewModel file)
         {
-            CambioDivisaViewModel = cambioDivisa;
             HistoricoCambioDivisaViewModel = historicoCambio;
             FileViewModel = file;
             //SelectedViewModel = cambioDivisa;
@@ -28,7 +27,6 @@ namespace CambioDivisa.ViewModel
                 SetProperty(ref _selectedViewModel, value);
             }
         }
-        public CambioDivisaViewModel CambioDivisaViewModel { get; }
         public HistoricoCambioDivisaViewModel HistoricoCambioDivisaViewModel { get; }
         public FileViewModel FileViewModel { get; }
 

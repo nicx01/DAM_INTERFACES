@@ -1,5 +1,4 @@
-﻿using CambioDivisa.Interfaces;
-using CambioDivisa.Service;
+﻿using CambioDivisa.Service;
 using CambioDivisa.ViewModel;
 using Microsoft.Extensions.DependencyInjection;
 using System.Configuration;
@@ -37,13 +36,10 @@ namespace CambioDivisa
 
             //view viewModels
             services.AddTransient<MainViewModel>();
-            services.AddTransient<CambioDivisaViewModel>();
             services.AddTransient<HistoricoCambioDivisaViewModel>();
             services.AddTransient<FileViewModel>();
 
             //Services
-            services.AddSingleton<ICambioDivisaService, CambioDivisaService>();
-            services.AddSingleton<IHistoricoDivisaProvider, HistoricoDivisaService>();
             services.AddSingleton<FileService, FileService>();
             return services.BuildServiceProvider();
         }

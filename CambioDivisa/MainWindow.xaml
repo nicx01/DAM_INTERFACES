@@ -5,7 +5,6 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:CambioDivisa" 
         xmlns:view="clr-namespace:CambioDivisa.View"
-        xmlns:controls="clr-namespace:CambioDivisa.Controls"
         xmlns:viewModel="clr-namespace:CambioDivisa.ViewModel"
         mc:Ignorable="d"        
         Title="Cambio de divisas" Height="450" Width="800"
@@ -13,9 +12,6 @@
         WindowStartupLocation="CenterScreen"
         Background="White">
     <Window.Resources>
-        <DataTemplate DataType="{x:Type viewModel:CambioDivisaViewModel}">
-            <view:CambioDivisaView/>
-        </DataTemplate>
         <DataTemplate DataType="{x:Type viewModel:HistoricoCambioDivisaViewModel}">
             <view:HistoricoCambioDivisaView/>
         </DataTemplate>
