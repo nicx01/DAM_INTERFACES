@@ -1,9 +1,9 @@
-﻿using System.Collections.ObjectModel;
+﻿using CambioDivisa.View;
+using CommunityToolkit.Mvvm.Input;
 using System.IO;
+using System.Collections.ObjectModel;
 using System.Threading.Tasks;
 using CambioDivisa.Service;
-using CommunityToolkit.Mvvm.ComponentModel;
-using CommunityToolkit.Mvvm.Input;
 
 namespace CambioDivisa.ViewModel
 {
@@ -27,21 +27,29 @@ namespace CambioDivisa.ViewModel
         [RelayCommand]
         private void CreateFile()
         {
-            string newFileName = $"NuevoArchivo_{Guid.NewGuid()}.txt";
-
-            _fileService.CreateFile(newFileName);
-
-            FilesAndDirectories.Add(new FileInfo(Path.Combine(_fileService._filesDirectory, newFileName)));
+            string fileName = ShowCreateNameDialog(isCreatingFile: true);
+            if (!string.IsNullOrWhiteSpace(fileName))
+            {
+                _fileService.CreateFile(fileName+ ".txt");
+                FilesAndDirectories.Add(new FileInfo(Path.Combine(_fileService._filesDirectory, fileName+ ".txt")));
+            }
         }
 
         [RelayCommand]
         private void CreateDirectory()
         {
-            string newDirectoryName = $"NuevoDirectorio_{Guid.NewGuid()}";
+            string directoryName = ShowCreateNameDialog(isCreatingFile: false);
+            if (!string.IsNullOrWhiteSpace(directoryName))
+            {
+                _fileService.CreateDirectory(directoryName);
+                FilesAndDirectories.Add(new DirectoryInfo(Path.Combine(_fileService._filesDirectory, directoryName)));
+            }
+        }
 
-            _fileService.CreateDirectory(newDirectoryName);
-
-            FilesAndDirectories.Add(new DirectoryInfo(Path.Combine(_fileService._filesDirectory, newDirectoryName)));
+        private string ShowCreateNameDialog(bool isCreatingFile)
+        {
+            var dialog = new CreateNameDialog(isCreatingFile);
+            return dialog.ShowDialog() == true ? dialog.InputName : null;
         }
     }
 }
