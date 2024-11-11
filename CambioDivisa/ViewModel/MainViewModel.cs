@@ -6,17 +6,16 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
 
-namespace CambioDivisa.ViewModel
+namespace FileManager.ViewModel
 {
     public partial class MainViewModel : ViewModelBase
     {
         private ViewModelBase? _selectedViewModel;
 
-        public MainViewModel(HistoricoCambioDivisaViewModel historicoCambio, FileViewModel file)
+        public MainViewModel(InfoViewModel info, FileViewModel file)
         {
-            HistoricoCambioDivisaViewModel = historicoCambio;
+            InfoViewModel = info;
             FileViewModel = file;
-            //SelectedViewModel = cambioDivisa;
         }
 
         public ViewModelBase? SelectedViewModel
@@ -27,7 +26,7 @@ namespace CambioDivisa.ViewModel
                 SetProperty(ref _selectedViewModel, value);
             }
         }
-        public HistoricoCambioDivisaViewModel HistoricoCambioDivisaViewModel { get; }
+        public InfoViewModel InfoViewModel { get; }
         public FileViewModel FileViewModel { get; }
 
         public async override Task LoadAsync()

@@ -1,4 +1,4 @@
-﻿<Window x:Class="CambioDivisa.View.CreateNameDialog"
+﻿<Window x:Class="FileManager.View.CreateNameDialog"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         Title="🎉 Crear Archivo o Directorio 🎉" 

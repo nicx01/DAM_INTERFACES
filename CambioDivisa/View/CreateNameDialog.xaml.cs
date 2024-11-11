@@ -1,6 +1,6 @@
 ﻿using System.Windows;
 
-namespace CambioDivisa.View
+namespace FileManager.View
 {
     public partial class CreateNameDialog : Window
     {

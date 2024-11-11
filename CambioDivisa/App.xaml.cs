@@ -1,11 +1,11 @@
-﻿using CambioDivisa.Service;
-using CambioDivisa.ViewModel;
+﻿using FileManager.Service;
+using FileManager.ViewModel;
 using Microsoft.Extensions.DependencyInjection;
 using System.Configuration;
 using System.Data;
 using System.Windows;
 
-namespace CambioDivisa
+namespace FileManager
 {
     /// <summary>
     /// Interaction logic for App.xaml
@@ -36,7 +36,7 @@ namespace CambioDivisa
 
             //view viewModels
             services.AddTransient<MainViewModel>();
-            services.AddTransient<HistoricoCambioDivisaViewModel>();
+            services.AddTransient<InfoViewModel>();
             services.AddTransient<FileViewModel>();
 
             //Services

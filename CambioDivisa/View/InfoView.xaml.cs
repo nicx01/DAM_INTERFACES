@@ -12,14 +12,14 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 
-namespace CambioDivisa.View
+namespace FileManager.View
 {
     /// <summary>
-    /// Lógica de interacción para HistoricoCambioDivisa.xaml
+    /// Lógica de interacción para Info.xaml
     /// </summary>
-    public partial class HistoricoCambioDivisaView : UserControl
+    public partial class InfoView : UserControl
     {
-        public HistoricoCambioDivisaView()
+        public InfoView()
         {
             InitializeComponent();
         }

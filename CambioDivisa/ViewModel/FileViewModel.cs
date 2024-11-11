@@ -1,11 +1,11 @@
-﻿using CambioDivisa.View;
+﻿using FileManager.View;
 using CommunityToolkit.Mvvm.Input;
 using System.IO;
 using System.Collections.ObjectModel;
 using System.Threading.Tasks;
-using CambioDivisa.Service;
+using FileManager.Service;
 
-namespace CambioDivisa.ViewModel
+namespace FileManager.ViewModel
 {
     public partial class FileViewModel : ViewModelBase
     {

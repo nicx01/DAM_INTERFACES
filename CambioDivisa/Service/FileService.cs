@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.IO;
 
-namespace CambioDivisa.Service
+namespace FileManager.Service
 {
     public class FileService
     {

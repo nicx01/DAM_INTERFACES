@@ -5,12 +5,12 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace CambioDivisa.ViewModel
+namespace FileManager.ViewModel
 {
-    public class HistoricoCambioDivisaViewModel : ViewModelBase
+    public class InfoViewModel : ViewModelBase
     {
 
-        public HistoricoCambioDivisaViewModel()
+        public InfoViewModel()
         {
         }
 
