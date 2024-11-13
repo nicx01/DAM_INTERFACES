@@ -12,10 +12,11 @@ namespace PokemonBackRules.ViewModel
     {
         private ViewModelBase? _selectedViewModel;
 
-        public MainViewModel(PokeSukaViewModel pokeSukaViewModel)
+        public MainViewModel(PokeSukaViewModel pokeSukaViewModel, MainMenuViewModel mainMenuViewModel)
         {
-            _selectedViewModel = pokeSukaViewModel;
+            _selectedViewModel = mainMenuViewModel;
             PokeSukaViewModel = pokeSukaViewModel;
+            MainMenuViewModel = mainMenuViewModel;
         }
         public ViewModelBase? SelectedViewModel
         {
@@ -26,7 +27,8 @@ namespace PokemonBackRules.ViewModel
             }
         }
 
-        public PokeSukaViewModel PokeSukaViewModel;
+        public PokeSukaViewModel PokeSukaViewModel { get; }
+        public MainMenuViewModel MainMenuViewModel { get; }
 
         public async override Task LoadAsync()
         {
@@ -34,6 +36,12 @@ namespace PokemonBackRules.ViewModel
             {
                 await SelectedViewModel.LoadAsync();
             }
+        }
+        [RelayCommand]
+        private async Task SelectViewModel(object? parameter)
+        {
+            SelectedViewModel = parameter as ViewModelBase;
+            await LoadAsync();
         }
     }
 }

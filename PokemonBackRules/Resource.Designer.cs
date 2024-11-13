@@ -69,5 +69,15 @@ namespace PokemonBackRules {
                 return ((byte[])(obj));
             }
         }
+        
+        /// <summary>
+        ///   Busca un recurso adaptado de tipo System.Byte[].
+        /// </summary>
+        internal static byte[] pokemon {
+            get {
+                object obj = ResourceManager.GetObject("pokemon", resourceCulture);
+                return ((byte[])(obj));
+            }
+        }
     }
 }

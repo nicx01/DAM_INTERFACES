@@ -13,10 +13,23 @@
         <DataTemplate DataType="{x:Type viewmodel:PokeSukaViewModel}">
             <view:PokeSukaView/>
         </DataTemplate>
+        <DataTemplate DataType="{x:Type viewmodel:MainMenuViewModel}">
+            <view:MainMenuView/>
+        </DataTemplate>
     </Window.Resources>
     <Grid>
-        <Grid>
-            <ContentControl Content="{Binding SelectedViewModel}"/>
-        </Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="*" />
+        </Grid.RowDefinitions>
+
+        <!-- Menu Bar 0-->
+        <Menu FontSize="15" Grid.Row="0">
+            <MenuItem Header="See Pokemon"
+         Command="{Binding SelectViewModelCommand}"
+         CommandParameter="{Binding PokeSukaViewModel}"/>
+        </Menu>
+
+        <ContentControl Grid.Row="1" Content="{Binding SelectedViewModel}"/>
     </Grid>
 </Window>
