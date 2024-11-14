@@ -38,7 +38,7 @@ namespace FileManager.ViewModel
         }
 
         [RelayCommand]
-        private async void SelectViewModel(object? parameter)
+        private async Task SelectViewModel(object? parameter)
         {
             SelectedViewModel = parameter as ViewModelBase;
             await LoadAsync();
