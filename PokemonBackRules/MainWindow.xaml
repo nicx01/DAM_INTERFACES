@@ -16,6 +16,9 @@
         <DataTemplate DataType="{x:Type viewmodel:MainMenuViewModel}">
             <view:MainMenuView/>
         </DataTemplate>
+        <DataTemplate DataType="{x:Type viewmodel:FightViewModel}">
+            <view:FightMenuView/>
+        </DataTemplate>
     </Window.Resources>
     <Grid>
         <Grid.RowDefinitions>
@@ -28,6 +31,9 @@
             <MenuItem Header="See Pokemon"
          Command="{Binding SelectViewModelCommand}"
          CommandParameter="{Binding PokeSukaViewModel}"/>
+            <MenuItem Header="Fight!"
+         Command="{Binding SelectViewModelCommand}"
+         CommandParameter="{Binding FightViewModel}"/>
         </Menu>
 
         <ContentControl Grid.Row="1" Content="{Binding SelectedViewModel}"/>
