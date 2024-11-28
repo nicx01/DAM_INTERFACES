@@ -6,12 +6,11 @@
              xmlns:local="clr-namespace:PokemonBackRules.View" 
              xmlns:viewmodel="clr-namespace:PokemonBackRules.ViewModel" 
              d:DataContext="{d:DesignInstance Type=viewmodel:FightViewModel}"
-             Background="White"
+             Background="AntiqueWhite"
              mc:Ignorable="d" 
              d:DesignHeight="900" d:DesignWidth="900">
 
     <Grid>
-        <!-- Define Row and Column Structure -->
         <Grid.RowDefinitions>
             <RowDefinition Height="2*" />
             <RowDefinition Height="*" />
@@ -22,7 +21,6 @@
             <ColumnDefinition Width="1*" />
         </Grid.ColumnDefinitions>
 
-        <!-- Opponent's Pokémon Image and Health -->
         <StackPanel Grid.Row="0" Grid.Column="0" HorizontalAlignment="Center">
             <TextBlock Text="Opponent's Health" 
                        FontSize="16" 
@@ -40,7 +38,6 @@
                    HorizontalAlignment="Center" />
         </StackPanel>
 
-        <!-- Player's Pokémon Image and Health -->
         <StackPanel Grid.Row="0" Grid.Column="1" HorizontalAlignment="Center">
             <TextBlock Text="Your Health" 
                        FontSize="16" 
@@ -58,7 +55,6 @@
                    HorizontalAlignment="Center" />
         </StackPanel>
 
-        <!-- Action Buttons -->
         <StackPanel Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="2" 
                     Orientation="Horizontal" 
                     HorizontalAlignment="Center" 
@@ -85,5 +81,6 @@
                     Foreground="White" 
                     FontSize="14" />
         </StackPanel>
+        <Image Margin="165,450,165,139" Source="/Resources/grass.png" Stretch="Uniform" Grid.ColumnSpan="2" Grid.RowSpan="2"/>
     </Grid>
 </UserControl>

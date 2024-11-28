@@ -8,7 +8,7 @@
         xmlns:view="clr-namespace:PokemonBackRules.View" 
         d:DataContext="{d:DesignInstance Type=viewmodel:MainViewModel}"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800">
+        Title="MainWindow" Height="800" Width="800">
     <Window.Resources>
         <DataTemplate DataType="{x:Type viewmodel:PokeSukaViewModel}">
             <view:PokeSukaView/>
@@ -19,7 +19,27 @@
         <DataTemplate DataType="{x:Type viewmodel:FightViewModel}">
             <view:FightMenuView/>
         </DataTemplate>
+
+        <!-- Estilos para los elementos del menú -->
+        <Style TargetType="MenuItem">
+            <Setter Property="Background" Value="#003B73"/>
+            <!-- Azul Pokémon -->
+            <Setter Property="Foreground" Value="#FFCB05"/>
+            <!-- Amarillo Pokémon -->
+            <Setter Property="FontSize" Value="15"/>
+            <Setter Property="Padding" Value="10,5"/>
+            <Setter Property="FontWeight" Value="Bold"/>
+            <Setter Property="BorderBrush" Value="#003B73"/>
+            <Setter Property="BorderThickness" Value="1"/>
+        </Style>
+        <Style TargetType="Menu">
+            <Setter Property="Background" Value="#003B73"/>
+            <!-- Azul Pokémon -->
+            <Setter Property="Foreground" Value="#FFCB05"/>
+            <!-- Amarillo Pokémon -->
+        </Style>
     </Window.Resources>
+
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto" />
@@ -28,12 +48,21 @@
 
         <!-- Menu Bar 0-->
         <Menu FontSize="15" Grid.Row="0">
-            <MenuItem Header="See Pokemon"
-         Command="{Binding SelectViewModelCommand}"
-         CommandParameter="{Binding PokeSukaViewModel}"/>
             <MenuItem Header="Fight!"
          Command="{Binding SelectViewModelCommand}"
          CommandParameter="{Binding FightViewModel}"/>
+            <MenuItem Header="Team"
+         Command="{Binding SelectViewModelCommand}"
+         CommandParameter="{Binding FightViewModel}"/>
+            <MenuItem Header="Historic"
+         Command="{Binding SelectViewModelCommand}"
+         CommandParameter="{Binding FightViewModel}"/>
+            <MenuItem Header="Import"
+         Command="{Binding SelectViewModelCommand}"
+         CommandParameter="{Binding FightViewModel}"/>
+            <MenuItem Header="See Pokemon"
+         Command="{Binding SelectViewModelCommand}"
+         CommandParameter="{Binding PokeSukaViewModel}"/>
         </Menu>
 
         <ContentControl Grid.Row="1" Content="{Binding SelectedViewModel}"/>
