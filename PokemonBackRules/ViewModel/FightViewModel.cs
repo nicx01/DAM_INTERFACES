@@ -71,7 +71,7 @@ namespace PokemonBackRules.ViewModel
             }
             catch (Exception ex)
             {
-                PokemonImage = $"Error: {ex.Message}";
+                PokemonImage = "..Resources\\missingNo.jpg";
             }
         }
 
