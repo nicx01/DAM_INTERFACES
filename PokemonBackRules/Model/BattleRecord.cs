@@ -8,6 +8,7 @@ namespace PokemonBackRules.Model
 {
     public class BattleRecord
     {
+        public int Id { get; set; }
         public DateTime DataStart { get; set; }
         public DateTime DateEnd { get; set; }
         public string PokeName { get; set; }

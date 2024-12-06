@@ -1,26 +1,21 @@
 ﻿using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
 using PokemonBackRules.Model;
-using PokemonBackRules.Models;
-using PokemonBackRules.Utils;
 using System;
-using System.Collections.ObjectModel;
 using System.Net.Http;
-using System.Reflection;
-using System.Reflection.Metadata;
-using System.Resources;
-using System.Runtime.Versioning;
-using System.Security.Policy;
 using System.Text.Json;
-using System.Text.Json.Serialization;
-using System.Windows.Input;
+using System.Text;
+using System.Threading.Tasks;
+using System.Windows;
+using PokemonBackRules.Utils;
 
 namespace PokemonBackRules.ViewModel
 {
     public partial class FightViewModel : ViewModelBase
     {
         private static readonly HttpClient HttpClient = new HttpClient();
-        private const string PokeApiUrl = "https://pokeapi.co/api/v2/pokemon/";
+        private const string ApiUrl = "https://localhost:7119/Pokemon";
+
         private Random random = new Random();
 
         [ObservableProperty]
@@ -28,25 +23,22 @@ namespace PokemonBackRules.ViewModel
         [ObservableProperty]
         private int _opponentHealth;
         [ObservableProperty]
-        private int _maxOpponentHealth = 100; //default
+        private int _maxOpponentHealth = 100;
         [ObservableProperty]
-        private int _playerHealth = 1000; 
+        private int _playerHealth = 1000;
         [ObservableProperty]
-        private int _maxPlayerHealth = 1000; 
+        private int _maxPlayerHealth = 1000;
         [ObservableProperty]
         private int _pokemonAttack = 0;
         [ObservableProperty]
-        public ObservableCollection<BattleRecord> _battleRecords = new ObservableCollection<BattleRecord>();
-        [ObservableProperty]
         private string _pokemonName;
-
-
 
         private bool isShiny = false;
         private DateTime start;
-        private int damageDone=0;
-        private int damageReceived=0;
+        private int damageDone = 0;
+        private int damageReceived = 0;
         private int healthFightStarted = 0;
+        private int currentId = 0;
 
         public FightViewModel()
         {
@@ -58,20 +50,22 @@ namespace PokemonBackRules.ViewModel
         {
             LoadRandomPokemon();
         }
-        [RelayCommand]
 
-        public void ApplyDamage()
+        [RelayCommand]
+        public async Task ApplyDamage()
         {
-            Random random = new Random();
-            int damage = random.Next(0, 41); 
+            int damage = random.Next(0, 41);
             OpponentHealth -= damage;
             damageDone += damage;
             if (OpponentHealth <= 0)
             {
+                await FinalizeBattleRecordAsync(false);
                 LoadRandomPokemon();
-                FinalizeBattleRecord(false);
             }
-            else GetDamage();
+            else
+            {
+                GetDamage();
+            }
         }
 
         private void GetDamage()
@@ -81,39 +75,41 @@ namespace PokemonBackRules.ViewModel
         }
 
         [RelayCommand]
-        public void Capture()
+        public async void Capture()
         {
             if (OpponentHealth <= 0)
             {
                 return;
             }
+
             double captureProbability = 1.0 - (OpponentHealth / (double)MaxOpponentHealth);
             double roll = random.NextDouble();
             if (roll <= captureProbability)
             {
-
                 if (isShiny)
                 {
-                    PlayerHealth = MaxPlayerHealth; 
+                    PlayerHealth = MaxPlayerHealth;
                 }
                 else
                 {
                     PlayerHealth = Math.Min(PlayerHealth + (int)(MaxPlayerHealth * 0.05), MaxPlayerHealth);
                 }
-                FinalizeBattleRecord(true);
+
+                await FinalizeBattleRecordAsync(true);
                 LoadRandomPokemon();
             }
             else
             {
-                GetDamage();           
+                GetDamage();
             }
         }
+
         private async Task LoadRandomPokemon()
         {
             try
             {
                 int randomId = random.Next(1, 101);
-                string apiUrl = $"{PokeApiUrl}{randomId}";
+                string apiUrl = $"https://pokeapi.co/api/v2/pokemon/{randomId}";
 
                 HttpResponseMessage response = await HttpClient.GetAsync(apiUrl);
 
@@ -132,6 +128,7 @@ namespace PokemonBackRules.ViewModel
                     SetDefaultPokemonImage();
                     return;
                 }
+
                 PokemonName = pokemonData.Name;
 
                 var hpStat = pokemonData.Stats.FirstOrDefault(s => s.StatInfo.Name == "hp");
@@ -145,11 +142,13 @@ namespace PokemonBackRules.ViewModel
                 PokemonImage = useShinySprite
                     ? pokemonData.FightSprites.FrontShiny ?? Constantes.MISSINGNO_IMAGE_PATH
                     : pokemonData.FightSprites.FrontDefault ?? Constantes.MISSINGNO_IMAGE_PATH;
+
                 start = DateTime.Now;
                 damageDone = 0;
                 damageReceived = 0;
                 healthFightStarted = PlayerHealth;
-                CreateBattleRecord();
+                GenerateTimestampId();
+                await CreateBattleRecordAsync();
             }
             catch (Exception ex)
             {
@@ -164,32 +163,79 @@ namespace PokemonBackRules.ViewModel
             MaxOpponentHealth = 100;
             OpponentHealth = MaxOpponentHealth;
         }
-        private void FinalizeBattleRecord(bool isCaptured)
-        {
-            var record = BattleRecords.LastOrDefault();
 
-            if (record != null)
+        private async Task FinalizeBattleRecordAsync(bool isCaptured)
+        {
+            try
             {
-                record.DateEnd = DateTime.Now; 
-                record.DamageDoneTrainer = damageDone; 
-                record.DamageReceivedTrainer = damageReceived; 
-                record.DamageDonePokemon = Math.Max(0, healthFightStarted - PlayerHealth); 
-                record.Catch = isCaptured; 
+                var record = new BattleRecord
+                {
+                    Id=currentId,
+                    DataStart = start,
+                    DateEnd = DateTime.Now,
+                    PokeName = PokemonName,
+                    Image = PokemonImage,
+                    Shiny = isShiny,
+                    DamageDoneTrainer = damageDone,
+                    DamageReceivedTrainer = damageReceived,
+                    DamageDonePokemon = Math.Max(0, healthFightStarted - PlayerHealth),
+                    Catch = isCaptured
+                };
+
+                string json = JsonSerializer.Serialize(record);
+                HttpContent content = new StringContent(json, Encoding.UTF8, "application/json");
+
+                HttpResponseMessage response = await HttpClient.PutAsync($"{ApiUrl}/{record.Id}", content);
+
+                if (!response.IsSuccessStatusCode)
+                {
+                    MessageBox.Show($"Error updating record: {response.StatusCode}");
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Error finalizing record: {ex.Message}");
             }
         }
 
-        private void CreateBattleRecord()
+        private async Task CreateBattleRecordAsync()
         {
-            var record = new BattleRecord
+            try
             {
-                DataStart = start,
-                PokeName = PokemonName,
-                Image = PokemonImage,
-                Shiny = isShiny
-            };
+                var record = new BattleRecord
+                {
+                    Id = currentId,
+                    DataStart = start,
+                    DateEnd = start,
+                    PokeName = PokemonName,
+                    Image = PokemonImage,
+                    Shiny = isShiny,
+                    DamageDoneTrainer = damageDone,
+                    DamageReceivedTrainer = damageReceived,
+                    DamageDonePokemon = Math.Max(0, healthFightStarted - PlayerHealth),
+                    Catch = false
+                };
 
-            BattleRecords.Add(record);
+                string json = JsonSerializer.Serialize(record);
+                HttpContent content = new StringContent(json, Encoding.UTF8, "application/json");
+
+                HttpResponseMessage response = await HttpClient.PostAsync(ApiUrl, content);
+
+                if (!response.IsSuccessStatusCode)
+                {
+                    MessageBox.Show($"Error creating record: {response.StatusCode}");
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Error creating record: {ex.Message}");
+            }
         }
+        private void GenerateTimestampId()
+        {
+            Random random = new Random();
+            currentId = random.Next(1, 10001);
 
+        }
     }
 }
