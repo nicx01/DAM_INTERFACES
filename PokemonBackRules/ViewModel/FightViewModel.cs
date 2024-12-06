@@ -35,6 +35,18 @@ namespace PokemonBackRules.ViewModel
         private int _maxPlayerHealth = 1000; 
         [ObservableProperty]
         private int _pokemonAttack = 0;
+        [ObservableProperty]
+        public ObservableCollection<BattleRecord> _battleRecords = new ObservableCollection<BattleRecord>();
+        [ObservableProperty]
+        private string _pokemonName;
+
+
+
+        private bool isShiny = false;
+        private DateTime start;
+        private int damageDone=0;
+        private int damageReceived=0;
+        private int healthFightStarted = 0;
 
         public FightViewModel()
         {
@@ -51,9 +63,50 @@ namespace PokemonBackRules.ViewModel
         public void ApplyDamage()
         {
             Random random = new Random();
-            int damage = random.Next(0, 41); OpponentHealth -= damage;
-            if (OpponentHealth <= 0) LoadRandomPokemon();
-            else PlayerHealth -= PokemonAttack;
+            int damage = random.Next(0, 41); 
+            OpponentHealth -= damage;
+            damageDone += damage;
+            if (OpponentHealth <= 0)
+            {
+                LoadRandomPokemon();
+                FinalizeBattleRecord(false);
+            }
+            else GetDamage();
+        }
+
+        private void GetDamage()
+        {
+            PlayerHealth -= PokemonAttack;
+            damageReceived += PokemonAttack;
+        }
+
+        [RelayCommand]
+        public void Capture()
+        {
+            if (OpponentHealth <= 0)
+            {
+                return;
+            }
+            double captureProbability = 1.0 - (OpponentHealth / (double)MaxOpponentHealth);
+            double roll = random.NextDouble();
+            if (roll <= captureProbability)
+            {
+
+                if (isShiny)
+                {
+                    PlayerHealth = MaxPlayerHealth; 
+                }
+                else
+                {
+                    PlayerHealth = Math.Min(PlayerHealth + (int)(MaxPlayerHealth * 0.05), MaxPlayerHealth);
+                }
+                FinalizeBattleRecord(true);
+                LoadRandomPokemon();
+            }
+            else
+            {
+                GetDamage();           
+            }
         }
         private async Task LoadRandomPokemon()
         {
@@ -79,6 +132,7 @@ namespace PokemonBackRules.ViewModel
                     SetDefaultPokemonImage();
                     return;
                 }
+                PokemonName = pokemonData.Name;
 
                 var hpStat = pokemonData.Stats.FirstOrDefault(s => s.StatInfo.Name == "hp");
                 var attackStat = pokemonData.Stats.FirstOrDefault(s => s.StatInfo.Name == "attack");
@@ -87,9 +141,15 @@ namespace PokemonBackRules.ViewModel
                 PokemonAttack = attackStat?.BaseStat ?? 10;
 
                 bool useShinySprite = random.Next(0, 100) < 5;
+                isShiny = useShinySprite;
                 PokemonImage = useShinySprite
                     ? pokemonData.FightSprites.FrontShiny ?? Constantes.MISSINGNO_IMAGE_PATH
                     : pokemonData.FightSprites.FrontDefault ?? Constantes.MISSINGNO_IMAGE_PATH;
+                start = DateTime.Now;
+                damageDone = 0;
+                damageReceived = 0;
+                healthFightStarted = PlayerHealth;
+                CreateBattleRecord();
             }
             catch (Exception ex)
             {
@@ -104,5 +164,32 @@ namespace PokemonBackRules.ViewModel
             MaxOpponentHealth = 100;
             OpponentHealth = MaxOpponentHealth;
         }
+        private void FinalizeBattleRecord(bool isCaptured)
+        {
+            var record = BattleRecords.LastOrDefault();
+
+            if (record != null)
+            {
+                record.DateEnd = DateTime.Now; 
+                record.DamageDoneTrainer = damageDone; 
+                record.DamageReceivedTrainer = damageReceived; 
+                record.DamageDonePokemon = Math.Max(0, healthFightStarted - PlayerHealth); 
+                record.Catch = isCaptured; 
+            }
+        }
+
+        private void CreateBattleRecord()
+        {
+            var record = new BattleRecord
+            {
+                DataStart = start,
+                PokeName = PokemonName,
+                Image = PokemonImage,
+                Shiny = isShiny
+            };
+
+            BattleRecords.Add(record);
+        }
+
     }
 }

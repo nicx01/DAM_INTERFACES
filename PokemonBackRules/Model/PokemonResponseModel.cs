@@ -11,6 +11,8 @@ namespace PokemonBackRules.Model
 
         [JsonPropertyName("stats")]
         public List<Stat> Stats { get; set; }
+        [JsonPropertyName("name")]
+        public string Name { get; set; }
     }
 
     public class FightSprites
