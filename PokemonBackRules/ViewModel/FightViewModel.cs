@@ -108,7 +108,7 @@ namespace PokemonBackRules.ViewModel
         {
             try
             {
-                int randomId = random.Next(1, 101);
+                int randomId = random.Next(1, 10);
                 string apiUrl = $"https://pokeapi.co/api/v2/pokemon/{randomId}";
 
                 HttpResponseMessage response = await HttpClient.GetAsync(apiUrl);
@@ -137,7 +137,7 @@ namespace PokemonBackRules.ViewModel
                 OpponentHealth = MaxOpponentHealth;
                 PokemonAttack = attackStat?.BaseStat ?? 10;
 
-                bool useShinySprite = random.Next(0, 100) < 5;
+                bool useShinySprite = random.Next(0, 100) < 80;
                 isShiny = useShinySprite;
                 PokemonImage = useShinySprite
                     ? pokemonData.FightSprites.FrontShiny ?? Constantes.MISSINGNO_IMAGE_PATH
@@ -171,8 +171,8 @@ namespace PokemonBackRules.ViewModel
                 var record = new BattleRecord
                 {
                     Id=currentId,
-                    DataStart = start,
-                    DateEnd = DateTime.Now,
+                    DataStart = start.ToString("O"),
+                    DateEnd = DateTime.Now.ToString("O"),
                     PokeName = PokemonName,
                     Image = PokemonImage,
                     Shiny = isShiny,
@@ -205,8 +205,8 @@ namespace PokemonBackRules.ViewModel
                 var record = new BattleRecord
                 {
                     Id = currentId,
-                    DataStart = start,
-                    DateEnd = start,
+                    DataStart = start.ToString("O"),
+                    DateEnd = start.ToString("O"),
                     PokeName = PokemonName,
                     Image = PokemonImage,
                     Shiny = isShiny,

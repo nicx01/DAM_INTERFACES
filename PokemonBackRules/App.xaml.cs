@@ -38,6 +38,7 @@ namespace PokemonBackRules
             services.AddTransient<PokeSukaViewModel>();
             services.AddTransient<MainMenuViewModel>();
             services.AddTransient<FightViewModel>();
+            services.AddTransient<TeamViewModel>();
 
             return services.BuildServiceProvider();
         }

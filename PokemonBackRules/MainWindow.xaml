@@ -19,6 +19,9 @@
         <DataTemplate DataType="{x:Type viewmodel:FightViewModel}">
             <view:FightMenuView/>
         </DataTemplate>
+        <DataTemplate DataType="{x:Type viewmodel:TeamViewModel}">
+            <view:TeamView/>
+        </DataTemplate>
 
         <!-- Estilos para los elementos del menú -->
         <Style TargetType="MenuItem">
@@ -53,7 +56,7 @@
          CommandParameter="{Binding FightViewModel}"/>
             <MenuItem Header="Team"
          Command="{Binding SelectViewModelCommand}"
-         CommandParameter="{Binding FightViewModel}"/>
+         CommandParameter="{Binding TeamViewModel}"/>
             <MenuItem Header="Historic"
          Command="{Binding SelectViewModelCommand}"
          CommandParameter="{Binding FightViewModel}"/>

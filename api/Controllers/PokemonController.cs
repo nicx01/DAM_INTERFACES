@@ -75,5 +75,11 @@ namespace FirstAPI.Controllers
             Pokemons.Remove(pokemon);
             return NoContent();
         }
+        [HttpGet("GetTeam")]
+        public IEnumerable<PokemonDTO> GetTeam()
+        {
+            var caughtPokemons = Pokemons.Where(p => p.Catch == true);
+            return caughtPokemons;
+        }
     }
 }
