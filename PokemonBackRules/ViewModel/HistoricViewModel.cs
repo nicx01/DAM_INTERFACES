@@ -1,4 +1,6 @@
 ﻿using CommunityToolkit.Mvvm.ComponentModel;
+using CommunityToolkit.Mvvm.Input;
+using Microsoft.Win32;
 using PokemonBackRules.Model;
 using PokemonBackRules.Models;
 using System;
@@ -7,6 +9,9 @@ using System.Net.Http;
 using System.Text.Json;
 using System.Threading.Tasks;
 using System.Windows;
+using CommunityToolkit.Mvvm.Input;
+using System.IO;
+
 
 namespace PokemonBackRules.ViewModel
 {
@@ -20,9 +25,31 @@ namespace PokemonBackRules.ViewModel
 
         public HistoricViewModel()
         {
-            // LoadAsync();
+            DownloadJsonCommand = new RelayCommand(DownloadJson);
         }
+        public IRelayCommand DownloadJsonCommand { get; }
 
+        private void DownloadJson()
+        {
+            SaveFileDialog saveFileDialog = new SaveFileDialog();
+            saveFileDialog.Filter = "JSON Files (*.json)|*.json";
+            saveFileDialog.DefaultExt = ".json";
+            saveFileDialog.FileName = "battle_records";
+
+            if (saveFileDialog.ShowDialog() == true)
+            {
+                string filePath = saveFileDialog.FileName;
+
+                var records = BattleRecords;
+
+                if (records != null)
+                {
+                    string json = JsonSerializer.Serialize(records, new JsonSerializerOptions { WriteIndented = true });
+
+                    File.WriteAllText(filePath, json);
+                }
+            }
+        }
         public override async Task LoadAsync()
         {
             try

@@ -18,9 +18,9 @@ namespace PokemonBackRules.View
     /// <summary>
     /// Lógica de interacción para PokeSuka.xaml
     /// </summary>
-    public partial class HistoricView : UserControl
+    public partial class ImportView : UserControl
     {
-        public HistoricView()
+        public ImportView()
         {
             InitializeComponent();
         }

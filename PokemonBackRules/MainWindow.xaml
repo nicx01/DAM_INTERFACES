@@ -25,6 +25,9 @@
         <DataTemplate DataType="{x:Type viewmodel:HistoricViewModel}">
             <view:HistoricView/>
         </DataTemplate>
+        <DataTemplate DataType="{x:Type viewmodel:ImportViewModel}">
+            <view:ImportView/>
+        </DataTemplate>
 
         <!-- Estilos para los elementos del menú -->
         <Style TargetType="MenuItem">
@@ -65,7 +68,7 @@
          CommandParameter="{Binding HistoricViewModel}"/>
             <MenuItem Header="Import"
          Command="{Binding SelectViewModelCommand}"
-         CommandParameter="{Binding FightViewModel}"/>
+         CommandParameter="{Binding ImportViewModel}"/>
             <MenuItem Header="See Pokemon"
          Command="{Binding SelectViewModelCommand}"
          CommandParameter="{Binding PokeSukaViewModel}"/>
