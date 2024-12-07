@@ -22,6 +22,9 @@
         <DataTemplate DataType="{x:Type viewmodel:TeamViewModel}">
             <view:TeamView/>
         </DataTemplate>
+        <DataTemplate DataType="{x:Type viewmodel:HistoricViewModel}">
+            <view:HistoricView/>
+        </DataTemplate>
 
         <!-- Estilos para los elementos del menú -->
         <Style TargetType="MenuItem">
@@ -59,7 +62,7 @@
          CommandParameter="{Binding TeamViewModel}"/>
             <MenuItem Header="Historic"
          Command="{Binding SelectViewModelCommand}"
-         CommandParameter="{Binding FightViewModel}"/>
+         CommandParameter="{Binding HistoricViewModel}"/>
             <MenuItem Header="Import"
          Command="{Binding SelectViewModelCommand}"
          CommandParameter="{Binding FightViewModel}"/>

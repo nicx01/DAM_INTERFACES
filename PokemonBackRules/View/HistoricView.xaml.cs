@@ -17,13 +17,14 @@ using System.Windows.Shapes;
 namespace PokemonBackRules.View
 {
     /// <summary>
-    /// Lógica de interacción para UserControl1.xaml
+    /// Lógica de interacción para PokeSuka.xaml
     /// </summary>
-    public partial class TeamView : UserControl
+    public partial class HistoricView : UserControl
     {
-        public TeamView()
+        public HistoricView()
         {
             InitializeComponent();
+           // DataContext = new HistoricViewModel();
         }
     }
 }

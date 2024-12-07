@@ -46,8 +46,9 @@ namespace PokemonBackRules.ViewModel
         }
 
         [RelayCommand]
-        public void Scape()
+        public async Task Scape()
         {
+            await FinalizeBattleRecordAsync(false);
             LoadRandomPokemon();
         }
 
@@ -72,6 +73,11 @@ namespace PokemonBackRules.ViewModel
         {
             PlayerHealth -= PokemonAttack;
             damageReceived += PokemonAttack;
+            if (PlayerHealth <= 0)
+            {
+                MessageBox.Show("¡Game Over! Tu salud ha llegado a 0.", "Fin del Juego");
+                Environment.Exit(0);
+            }
         }
 
         [RelayCommand]
@@ -108,7 +114,7 @@ namespace PokemonBackRules.ViewModel
         {
             try
             {
-                int randomId = random.Next(1, 10);
+                int randomId = random.Next(1, 101);
                 string apiUrl = $"https://pokeapi.co/api/v2/pokemon/{randomId}";
 
                 HttpResponseMessage response = await HttpClient.GetAsync(apiUrl);
@@ -137,7 +143,7 @@ namespace PokemonBackRules.ViewModel
                 OpponentHealth = MaxOpponentHealth;
                 PokemonAttack = attackStat?.BaseStat ?? 10;
 
-                bool useShinySprite = random.Next(0, 100) < 80;
+                bool useShinySprite = random.Next(0, 100) < 5;
                 isShiny = useShinySprite;
                 PokemonImage = useShinySprite
                     ? pokemonData.FightSprites.FrontShiny ?? Constantes.MISSINGNO_IMAGE_PATH
@@ -171,8 +177,8 @@ namespace PokemonBackRules.ViewModel
                 var record = new BattleRecord
                 {
                     Id=currentId,
-                    DataStart = start.ToString("O"),
-                    DateEnd = DateTime.Now.ToString("O"),
+                    DataStart = start.ToString("dd/MM/yyyy HH:mm"),
+                    DateEnd = DateTime.Now.ToString("dd/MM/yyyy HH:mm"),
                     PokeName = PokemonName,
                     Image = PokemonImage,
                     Shiny = isShiny,
@@ -205,8 +211,8 @@ namespace PokemonBackRules.ViewModel
                 var record = new BattleRecord
                 {
                     Id = currentId,
-                    DataStart = start.ToString("O"),
-                    DateEnd = start.ToString("O"),
+                    DataStart = start.ToString("dd/MM/yyyy HH:mm"),
+                    DateEnd = "FIGHTING",
                     PokeName = PokemonName,
                     Image = PokemonImage,
                     Shiny = isShiny,
@@ -234,7 +240,7 @@ namespace PokemonBackRules.ViewModel
         private void GenerateTimestampId()
         {
             Random random = new Random();
-            currentId = random.Next(1, 10001);
+            currentId = random.Next(1, 100000001);
 
         }
     }
