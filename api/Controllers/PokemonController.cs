@@ -75,6 +75,12 @@ namespace FirstAPI.Controllers
             Pokemons.Remove(pokemon);
             return NoContent();
         }
+        [HttpDelete("DeleteAll")]
+        public ActionResult RemoveAll()
+        {
+            Pokemons.Clear(); 
+            return NoContent();
+        }
         [HttpGet("GetTeam")]
         public IEnumerable<PokemonDTO> GetTeam()
         {

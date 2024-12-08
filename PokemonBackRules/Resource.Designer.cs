@@ -63,6 +63,16 @@ namespace PokemonBackRules {
         /// <summary>
         ///   Busca un recurso adaptado de tipo System.Byte[].
         /// </summary>
+        internal static byte[] check_icon {
+            get {
+                object obj = ResourceManager.GetObject("check_icon", resourceCulture);
+                return ((byte[])(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Busca un recurso adaptado de tipo System.Byte[].
+        /// </summary>
         internal static byte[] grass {
             get {
                 object obj = ResourceManager.GetObject("grass", resourceCulture);

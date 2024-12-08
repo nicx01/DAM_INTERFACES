@@ -9,6 +9,7 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <None Remove="Resources\check_icon.png" />
     <None Remove="Resources\grass.png" />
     <None Remove="Resources\missingNo.jpg" />
     <None Remove="Resources\pokemon.png" />
@@ -18,6 +19,9 @@
 		<PackageReference Include="Microsoft.Extensions.DependencyInjection" Version="8.0.1" />
 	</ItemGroup>
 	<ItemGroup>
+	  <Resource Include="Resources\check_icon.png">
+	    <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+	  </Resource>
 	  <Resource Include="Resources\grass.png">
 	    <CopyToOutputDirectory>Always</CopyToOutputDirectory>
 	  </Resource>

@@ -9,25 +9,25 @@ namespace PokemonBackRules.Model
 {
     public class BattleRecord
     {
-        [JsonPropertyName("Id")]
+        [JsonPropertyName("id")]
         public int Id { get; set; }
-        [JsonPropertyName("DataStart")]
+        [JsonPropertyName("dataStart")]
         public string DataStart { get; set; }
-        [JsonPropertyName("DateEnd")]
+        [JsonPropertyName("dateEnd")]
         public string DateEnd { get; set; }
-        [JsonPropertyName("PokeName")]
+        [JsonPropertyName("pokeName")]
         public string PokeName { get; set; }
-        [JsonPropertyName("DamageDoneTrainer")]
+        [JsonPropertyName("damageDoneTrainer")]
         public int DamageDoneTrainer { get; set; }
-        [JsonPropertyName("DamageReceivedTrainer")]
+        [JsonPropertyName("damageReceivedTrainer")]
         public int DamageReceivedTrainer { get; set; }
-        [JsonPropertyName("DamageDonePokemon")]
+        [JsonPropertyName("damageDonePokemon")]
         public int DamageDonePokemon { get; set; }
-        [JsonPropertyName("Image")]
+        [JsonPropertyName("image")]
         public string Image { get; set; }
-        [JsonPropertyName("Catch")]
+        [JsonPropertyName("catch")]
         public bool Catch { get; set; }
-        [JsonPropertyName("Shiny")]
+        [JsonPropertyName("shiny")]
         public bool Shiny { get; set; }
     }
 
