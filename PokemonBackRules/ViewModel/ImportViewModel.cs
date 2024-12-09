@@ -9,13 +9,14 @@ using System.Text.Json;
 using System.Threading.Tasks;
 using System.Windows;
 using Microsoft.Win32;
+using PokemonBackRules.Utils;
 
 namespace PokemonBackRules.ViewModel
 {
     public partial class ImportViewModel : ViewModelBase
     {
         private static readonly HttpClient HttpClient = new HttpClient();
-        private const string ApiUrl = "https://localhost:7119/Pokemon";
+        private const string ApiUrl = Constantes.POKE_HISTORIC_URL;
 
         [ObservableProperty]
         private string _statusIcon;
@@ -51,22 +52,22 @@ namespace PokemonBackRules.ViewModel
 
                             if (!response.IsSuccessStatusCode)
                             {
-                                SetStatus("Error al importar el archivo.", "error_icon.png");
+                                SetStatus("Error al importar el archivo.", Constantes.ERROR_IMAGE_PATH);
                                 return;
                             }
                         }
 
-                        SetStatus("¡Importación exitosa!", "check_icon.png");
+                        SetStatus("¡Importación exitosa!", Constantes.CHECK_IMAGE_PATH);
                     }
                     else
                     {
-                        SetStatus("El archivo no tiene el formato correcto.", "error_icon.png");
+                        SetStatus("El archivo no tiene el formato correcto.", Constantes.ERROR_IMAGE_PATH);
                     }
                 }
             }
             catch (Exception ex)
             {
-                SetStatus($"Error al cargar el archivo: {ex.Message}", "error_icon.png");
+                SetStatus($"Error al cargar el archivo: {ex.Message}", Constantes.ERROR_IMAGE_PATH);
             }
         }
 
@@ -79,13 +80,13 @@ namespace PokemonBackRules.ViewModel
                 if (!response.IsSuccessStatusCode)
                 {
                     MessageBox.Show("Error al borrar los registros existentes en la API.", "Error");
-                    SetStatus("Error al borrar los registros existentes.", "error_icon.png");
+                    SetStatus("Error al borrar los registros existentes.", Constantes.ERROR_IMAGE_PATH);
                 }
             }
             catch (Exception ex)
             {
                 MessageBox.Show($"Error al borrar registros: {ex.Message}", "Error");
-                SetStatus("Error al borrar los registros existentes.", "error_icon.png");
+                SetStatus("Error al borrar los registros existentes.", Constantes.ERROR_IMAGE_PATH);
             }
         }
 

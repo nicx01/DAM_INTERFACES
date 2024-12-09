@@ -11,6 +11,7 @@ using System.Threading.Tasks;
 using System.Windows;
 using CommunityToolkit.Mvvm.Input;
 using System.IO;
+using PokemonBackRules.Utils;
 
 
 namespace PokemonBackRules.ViewModel
@@ -18,7 +19,7 @@ namespace PokemonBackRules.ViewModel
     public partial class HistoricViewModel : ViewModelBase
     {
         private static readonly HttpClient HttpClient = new HttpClient();
-        private const string ApiUrl = "https://localhost:7119/Pokemon"; // URL de tu API
+        private const string ApiUrl = Constantes.POKE_HISTORIC_URL;
 
         [ObservableProperty]
         private ObservableCollection<BattleRecord> battleRecords = new ObservableCollection<BattleRecord>();

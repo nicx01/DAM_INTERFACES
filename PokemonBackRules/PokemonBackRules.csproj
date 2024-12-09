@@ -10,6 +10,7 @@
 
   <ItemGroup>
     <None Remove="Resources\check_icon.png" />
+    <None Remove="Resources\error_icon.png" />
     <None Remove="Resources\grass.png" />
     <None Remove="Resources\missingNo.jpg" />
     <None Remove="Resources\pokemon.png" />
@@ -20,6 +21,9 @@
 	</ItemGroup>
 	<ItemGroup>
 	  <Resource Include="Resources\check_icon.png">
+	    <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+	  </Resource>
+	  <Resource Include="Resources\error_icon.png">
 	    <CopyToOutputDirectory>Always</CopyToOutputDirectory>
 	  </Resource>
 	  <Resource Include="Resources\grass.png">

@@ -13,8 +13,8 @@ namespace PokemonBackRules.ViewModel
 {
     public partial class FightViewModel : ViewModelBase
     {
-        private static readonly HttpClient HttpClient = new HttpClient();
-        private const string ApiUrl = "https://localhost:7119/Pokemon";
+        private static readonly HttpClient HttpClient = new HttpClient(); //TODO al servcie
+        private const string ApiUrl = Constantes.POKE_HISTORIC_URL; 
 
         private Random random = new Random();
 
@@ -71,11 +71,11 @@ namespace PokemonBackRules.ViewModel
 
         private void GetDamage()
         {
-            PlayerHealth -= PokemonAttack;
+            PlayerHealth = (PlayerHealth - PokemonAttack) < 0 ? 0 : (PlayerHealth - PokemonAttack);
             damageReceived += PokemonAttack;
             if (PlayerHealth <= 0)
             {
-                MessageBox.Show("¡Game Over! Tu salud ha llegado a 0.", "Fin del Juego");
+                MessageBox.Show("¡Game Over! Tu salud ha llegado a 0.", "Fin del Juego"); //TODO hacks
                 Environment.Exit(0);
             }
         }
@@ -114,6 +114,7 @@ namespace PokemonBackRules.ViewModel
         {
             try
             {
+                //TODO service
                 int randomId = random.Next(1, 101);
                 string apiUrl = $"https://pokeapi.co/api/v2/pokemon/{randomId}";
 
@@ -134,11 +135,11 @@ namespace PokemonBackRules.ViewModel
                     SetDefaultPokemonImage();
                     return;
                 }
-
+                //TODO end service
                 PokemonName = pokemonData.Name;
 
-                var hpStat = pokemonData.Stats.FirstOrDefault(s => s.StatInfo.Name == "hp");
-                var attackStat = pokemonData.Stats.FirstOrDefault(s => s.StatInfo.Name == "attack");
+                var hpStat = pokemonData.Stats.FirstOrDefault(s => s.StatInfo.Name == "hp"); //TODo constantes
+                var attackStat = pokemonData.Stats.FirstOrDefault(s => s.StatInfo.Name == "attack"); //TODo constantes
                 MaxOpponentHealth = hpStat?.BaseStat ?? 100;
                 OpponentHealth = MaxOpponentHealth;
                 PokemonAttack = attackStat?.BaseStat ?? 10;
@@ -187,7 +188,7 @@ namespace PokemonBackRules.ViewModel
                     DamageDonePokemon = Math.Max(0, healthFightStarted - PlayerHealth),
                     Catch = isCaptured
                 };
-
+                //TODO service
                 string json = JsonSerializer.Serialize(record);
                 HttpContent content = new StringContent(json, Encoding.UTF8, "application/json");
 
@@ -197,6 +198,7 @@ namespace PokemonBackRules.ViewModel
                 {
                     MessageBox.Show($"Error updating record: {response.StatusCode}");
                 }
+                //TODO service
             }
             catch (Exception ex)
             {
@@ -221,7 +223,7 @@ namespace PokemonBackRules.ViewModel
                     DamageDonePokemon = Math.Max(0, healthFightStarted - PlayerHealth),
                     Catch = false
                 };
-
+                //TODO service
                 string json = JsonSerializer.Serialize(record);
                 HttpContent content = new StringContent(json, Encoding.UTF8, "application/json");
 
@@ -231,12 +233,14 @@ namespace PokemonBackRules.ViewModel
                 {
                     MessageBox.Show($"Error creating record: {response.StatusCode}");
                 }
+                //TODO service
             }
             catch (Exception ex)
             {
                 MessageBox.Show($"Error creating record: {ex.Message}");
             }
         }
+        //hacK DEL COPON GUID
         private void GenerateTimestampId()
         {
             Random random = new Random();

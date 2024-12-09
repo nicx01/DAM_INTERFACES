@@ -1,5 +1,6 @@
 ﻿using CommunityToolkit.Mvvm.ComponentModel;
 using PokemonBackRules.Model;
+using PokemonBackRules.Utils;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -15,7 +16,7 @@ namespace PokemonBackRules.ViewModel
     public partial class TeamViewModel : ViewModelBase
     {
         private static readonly HttpClient HttpClient = new HttpClient();
-        private const string ApiUrl = "https://localhost:7119/Pokemon/GetTeam";
+        private const string ApiUrl = Constantes.POKE_TEAM_URL;
 
         private Random random = new Random();
 
