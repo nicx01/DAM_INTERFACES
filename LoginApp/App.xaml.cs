@@ -42,6 +42,7 @@ namespace PokemonBackRules
             services.AddTransient<HistoricViewModel>();
             services.AddTransient<ImportViewModel>();
             services.AddTransient<RegisterViewModel>();
+            services.AddTransient<LoginViewModel>();
 
             return services.BuildServiceProvider();
         }

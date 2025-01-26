@@ -12,7 +12,7 @@ namespace PokemonBackRules.ViewModel
     {
         private ViewModelBase? _selectedViewModel;
 
-        public MainViewModel(PokeSukaViewModel pokeSukaViewModel, MainMenuViewModel mainMenuViewModel, FightViewModel fightViewModel, TeamViewModel teamViewModel, HistoricViewModel historicViewModel, ImportViewModel importViewModel, RegisterViewModel registerViewModel)
+        public MainViewModel(PokeSukaViewModel pokeSukaViewModel, MainMenuViewModel mainMenuViewModel, FightViewModel fightViewModel, TeamViewModel teamViewModel, HistoricViewModel historicViewModel, ImportViewModel importViewModel, RegisterViewModel registerViewModel, LoginViewModel loginViewModel)
         {
             _selectedViewModel = mainMenuViewModel;
             PokeSukaViewModel = pokeSukaViewModel;
@@ -22,6 +22,7 @@ namespace PokemonBackRules.ViewModel
             HistoricViewModel = historicViewModel;
             ImportViewModel = importViewModel;
             RegisterViewModel = registerViewModel;
+            LoginViewModel = loginViewModel;
         }
         public ViewModelBase? SelectedViewModel
         {
@@ -39,6 +40,7 @@ namespace PokemonBackRules.ViewModel
         public HistoricViewModel HistoricViewModel { get; }
         public ImportViewModel ImportViewModel { get; }
         public RegisterViewModel RegisterViewModel { get; }
+        public LoginViewModel LoginViewModel { get; }
 
         public async override Task LoadAsync()
         {
