@@ -115,37 +115,29 @@ namespace PokemonBackRules.ViewModel
                 role = "admin"            // Asignar "admin" a role
             };
 
-            // Serializar el objeto a JSON utilizando System.Text.Json
             var json = JsonSerializer.Serialize(user);
             var content = new StringContent(json, Encoding.UTF8, "application/json");
 
             try
             {
-                // Hacer la solicitud POST a la API (reemplaza esta URL con la correcta de tu API)
                 var response = await httpClient.PostAsync("https://localhost:7777/api/users/register", content);
 
                 if (response.IsSuccessStatusCode)
                 {
-                    // Lógica en caso de que la respuesta sea exitosa
                     ErrorMessage = "Registration successful!";
                 }
                 else
                 {
-                    // Leer el contenido de la respuesta de error
                     var errorResponse = await response.Content.ReadAsStringAsync();
 
-                    // Aquí puedes deserializar la respuesta de error si es necesario
                     try
                     {
-                        // Intentamos deserializar el contenido como un objeto JSON
                         var errorDetails = JsonSerializer.Deserialize<ErrorResponse>(errorResponse);
 
-                        // Mostrar detalles del error en la interfaz de usuario
                         ErrorMessage = $"Registration failed: {errorDetails?.Detail ?? errorDetails?.Title ?? "Unknown error"}";
                     }
                     catch (JsonException)
                     {
-                        // Si no podemos deserializar, mostramos la respuesta cruda
                         ErrorMessage = $"Registration failed. Response: {errorResponse}";
                     }
                 }
