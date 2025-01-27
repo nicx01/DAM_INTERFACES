@@ -1,0 +1,12 @@
+<div class="product-list">
+  <div *ngFor="let product of products" class="product-card">
+    <img [src]="product.imageUrl" [alt]="product.name" class="product-image" />
+    <h2>{{ product.name }}</h2>
+    <p>{{ product.description }}</p>
+    <p>Precio de salida: {{ product.startingPrice | currency }}</p>
+    <p>Precio en el mercado: {{ product.marketPrice | currency }}</p>
+    <p>Fecha de lanzamiento: {{ product.releaseDate | date }}</p>
+    <p>Subasta activa: {{ product.isAuctionOpen ? 'Sí' : 'No' }}</p>
+    <p *ngIf="product.isAuctionOpen">Cierra: {{ product.endDate | date:'short' }}</p>
+  </div>
+</div>
