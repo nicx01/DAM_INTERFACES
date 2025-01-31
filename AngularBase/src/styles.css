@@ -8,10 +8,13 @@ body {
   font-family: 'Be Vietnam Pro', sans-serif;
 }
 :root {
-  --primary-color: #605DC8;
-  --secondary-color: #8B89E6;
-  --accent-color: #e8e7fa;
-  --shadow-color: #E8E8E8;
+  --primary-color: #34db3c; /* Azul */
+  --secondary-color: #2ecc71; /* Verde */
+  --background-color: #f4f4f4; /* Gris claro */
+  --text-color: #333; /* Gris oscuro */
+  --button-hover: #2980b9; /* Azul más oscuro para hover */
+  --input-bg-color: #fff; /* Blanco para los inputs */
+  --shadow-color: rgba(0, 0, 0, 0.1); /* Sombra sutil */
 }
 
 button.primary {

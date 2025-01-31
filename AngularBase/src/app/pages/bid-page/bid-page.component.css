@@ -1,0 +1,81 @@
+/* Contenedor principal de la página de puja */
+.bid-page-container {
+  width: 100%;
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 20px;
+  background-color: #f9f9f9;
+  border-radius: 8px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+/* Título principal */
+.bid-page-container h1 {
+  text-align: center;
+  color: #333;
+  font-size: 1.8em;
+  margin-bottom: 20px;
+}
+
+/* Contenedor de la imagen del producto */
+.product-image-container {
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.product-image {
+  max-width: 100%;
+  height: auto;
+  border-radius: 8px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+/* Estilos para los detalles del producto (precio y nombre) */
+.bid-page-container div {
+  margin-bottom: 20px;
+}
+
+.bid-page-container p {
+  font-size: 1.1em;
+  color: #333;
+}
+
+/* Estilos para el formulario de puja */
+.bid-form-container form {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+.bid-form-container label {
+  font-size: 1.2em;
+  color: #555;
+}
+
+.bid-form-container input {
+  padding: 10px;
+  font-size: 1em;
+  border-radius: 8px;
+  border: 1px solid #ccc;
+  outline: none;
+  transition: border-color 0.3s ease;
+}
+
+.bid-form-container input:focus {
+  border-color: #4a90e2;
+}
+
+.bid-button {
+  padding: 12px;
+  background-color: #4a90e2;
+  color: white;
+  font-size: 1.1em;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.bid-button:hover {
+  background-color: #357ab7;
+}

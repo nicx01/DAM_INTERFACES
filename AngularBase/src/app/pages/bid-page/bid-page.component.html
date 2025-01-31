@@ -1,0 +1,28 @@
+<div class="bid-page-container">
+    <h1>Página de Puja para el producto: {{ product?.name }}</h1>
+    
+    <div class="product-image-container">
+      <img [src]="product?.photo" alt="{{ product?.name }}" class="product-image" />
+    </div>
+  
+    <div>
+      <p><strong>Precio original:</strong> ${{ product?.retail_price }}</p>
+      <p><strong>Precio de reventa:</strong> ${{ product?.resell_price }}</p>
+    </div>
+    
+    <div class="bid-form-container">
+      <form>
+        <label for="bidAmount">Introduce tu puja:</label>
+        <input
+          id="bidAmount"
+          type="number"
+          name="bidAmount"
+          required
+          min="{{ product?.resell_price }}"
+          placeholder="Introduce tu puja"
+        />
+        <button type="submit" class="bid-button">Pujar</button>
+      </form>
+    </div>
+  </div>
+  

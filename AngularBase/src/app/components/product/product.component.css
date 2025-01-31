@@ -1,0 +1,59 @@
+.listing {
+  background: var(--accent-color);
+  border-radius: 30px;
+  padding-bottom: 30px;
+}
+
+.listing-heading {
+  color: var(--primary-color);
+  padding: 10px 20px 0;
+}
+
+.listing-photo {
+  height: 250px;
+  width: 100%;
+  object-fit: cover;
+  border-radius: 30px 30px 0 0;
+}
+
+.listing-calendar, .listing-money1, .listing-money2 {
+  padding: 10px 20px;
+}
+
+.listing-calendar::before {
+  content: url("/assets/calendar.svg");
+  display: inline-block;
+  margin-right: 10px; /* Espacio entre la imagen y el texto */
+  filter: brightness(0) invert(1); /* Hace que el icono sea blanco */
+  width: 20px; /* Tamaño ajustado */
+  height: 20px; /* Tamaño ajustado */
+}
+
+.listing-money1::before {
+  content: url("/assets/money1.svg");
+  display: inline-block;
+  margin-right: 10px; /* Espacio entre la imagen y el texto */
+  filter: brightness(0) invert(1); /* Hace que el icono sea blanco */
+  width: 20px; /* Tamaño ajustado */
+  height: 20px; /* Tamaño ajustado */
+}
+
+.listing-money2::before {
+  content: url("/assets/money2.svg");
+  display: inline-block;
+  margin-right: 10px; /* Espacio entre la imagen y el texto */
+  filter: brightness(0) invert(1); /* Hace que el icono sea blanco */
+  width: 20px; /* Tamaño ajustado */
+  height: 20px; /* Tamaño ajustado */
+}
+
+section.listing a {
+  padding-left: 20px;
+  text-decoration: none;
+  color: var(--primary-color);
+}
+
+section.listing a::after {
+  content: "\203A";
+  margin-left: 5px;
+}

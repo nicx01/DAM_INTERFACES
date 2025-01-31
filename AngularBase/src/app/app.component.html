@@ -1,10 +1,20 @@
 <a [routerLink]="['/']">
-    <header class="brand-name">
-      <img class="brand-logo" src="/assets/logo.svg" alt="logo" aria-hidden="true" />
-    </header>
-  </a>
+  <header class="brand-name">
+    <img class="brand-logo" src="/assets/nigo.png" alt="logo" aria-hidden="true" />
+  </header>
+</a>
+
+<nav class="navbar">
+  <ul class="nav-links">
+    <li><a [routerLink]="['/']">Home</a></li>
+    <li><a [routerLink]="['/products']">Products</a></li>
+    <li><a [routerLink]="['/about']">About</a></li>
+    <li><a [routerLink]="['/contact']">Contact</a></li>
+  </ul>
+</nav>
+
 <main>
-    <section class="content">
-      <router-outlet></router-outlet>
-    </section>    
+  <section class="content">
+    <router-outlet></router-outlet>
+  </section>
 </main>

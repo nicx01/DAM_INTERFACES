@@ -1,34 +1,35 @@
-import { Component,inject} from '@angular/core';
-import {HousingLocationComponent} from '../../components/housing-location/housing-location.component';
-import {HousingLocation} from '../../models/housinglocation'
+import { Component, OnInit } from '@angular/core';
+import { ProductComponent } from '../../components/product/product.component';
+import { Product } from '../../models/product';
 import { CommonModule } from '@angular/common';
-import {HousingService} from '../../services/housing.service';
+import { ProductService } from '../../services/product.service';
 
 @Component({
   selector: 'app-home',
-  imports: [CommonModule, HousingLocationComponent],
+  imports: [CommonModule, ProductComponent],
   templateUrl: './home.component.html',
   styleUrls: ['./home.component.css'],
 })
-export class HomeComponent {
-  housingLocationList: HousingLocation[]=[];
-  filteredLocationList: HousingLocation[]=[];
+export class HomeComponent implements OnInit {
+  productList: Product[] = [];
+  filteredProductList: Product[] = [];
 
-  constructor(private housingService: HousingService) {
-    this.housingService.getAllHousingLocations().then((housingLocationList: HousingLocation[]) => {
-      this.housingLocationList = housingLocationList;
-      this.filteredLocationList = housingLocationList;
+  constructor(private productService: ProductService) {}
+
+  ngOnInit(): void {
+    this.productService.getAllProducts().then((productList: Product[]) => {
+      this.productList = productList;
+      this.filteredProductList = productList;
     });
   }
+
   filterResults(text: string) {
     if (!text) {
-      this.filteredLocationList = this.housingLocationList;
+      this.filteredProductList = this.productList;
       return;
     }
-    
-    this.filteredLocationList = this.housingLocationList.filter((housingLocation) =>
-      housingLocation?.city.toLowerCase().includes(text.toLowerCase()),
+    this.filteredProductList = this.productList.filter((product) =>
+      product?.name.toLowerCase().includes(text.toLowerCase())
     );
   }
-  
 }

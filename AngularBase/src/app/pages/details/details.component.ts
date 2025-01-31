@@ -1,39 +1,31 @@
 import { Component, inject } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
-import { HousingLocation } from 'src/app/models/housinglocation';
-import { HousingService } from 'src/app/services/housing.service';
-import {FormControl, FormGroup, ReactiveFormsModule} from '@angular/forms';
+import { ActivatedRoute, Router } from '@angular/router';  // Importar Router
+import { Product } from 'src/app/models/product'; 
+import { ProductService } from 'src/app/services/product.service';
 
 @Component({
   selector: 'app-details',
-  imports: [ReactiveFormsModule],
   templateUrl: './details.component.html',
   styleUrls: ['./details.component.css']
 })
 export class DetailsComponent {
   route: ActivatedRoute = inject(ActivatedRoute);
+  router: Router = inject(Router); 
+  product: Product | undefined;
 
-  applyForm = new FormGroup({
-    firstName: new FormControl(''),
-    lastName: new FormControl(''),
-    email: new FormControl(''),
-  });
-  
-  housingLocation: HousingLocation | undefined;
-  housingService: HousingService;
+  productService: ProductService = inject(ProductService);
 
-  constructor(housingService: HousingService) {
-      const housingLocationId = parseInt(this.route.snapshot.params['id'], 1);
-      housingService.getHousingLocationById(housingLocationId).then((housingLocation) => {
-        this.housingLocation = housingLocation;
-      });
-      this.housingService=housingService;
+  constructor() {
+    const productId = parseInt(this.route.snapshot.params['id'], 10);
+
+    this.productService.getProductById(productId).then((product) => {
+      this.product = product;
+    });
   }
-  submitApplication() {
-    this.housingService.submitApplication(
-      this.applyForm.value.firstName ?? '',
-      this.applyForm.value.lastName ?? '',
-      this.applyForm.value.email ?? '',
-    );
+
+  navigateToBidPage() {
+    if (this.product?.id) {
+      this.router.navigate([`/bid/${this.product.id}`]);
+    }
   }
 }

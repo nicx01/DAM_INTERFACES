@@ -6,29 +6,57 @@ import { HousingLocation } from '../models/housinglocation';
 })
 export class HousingService {
   housingLocationList: HousingLocation[];
-  readonly baseUrl = 'http://localhost:5072/api/House';
+
   constructor() {
-    this.housingLocationList= [];
-
-   }
-
-   async getAllHousingLocations(): Promise<HousingLocation[]> {
-    let headers = new Headers();
-    headers.append('Authorization', 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1bmlxdWVfbmFtZSI6IkJpbWJhX0pvZ2EiLCJyb2xlIjoiYWRtaW4iLCJuYmYiOjE3MzgyNjQ3MTYsImV4cCI6MTczODI2NTEzNiwiaWF0IjoxNzM4MjY0NzE2fQ.0aj1ScoIed0ULksXfUel8MxbVWDlYTiUQGgYl2FHPkI');
-    const data = await fetch(this.baseUrl,{method:'GET',
-      headers: headers,
-     });
-    return (await data.json()) ?? [];
+    // Datos simulados localmente
+    this.housingLocationList = [
+      {
+        id: 1,
+        name: 'Apartamento Central',
+        city: 'Ciudad A',
+        state: 'Estado A',
+        photo: 'photo1.jpg',
+        availableUnits: 5,
+        wifi: true,
+        laundry: true
+      },
+      {
+        id: 2,
+        name: 'Vivienda en la Playa',
+        city: 'Ciudad B',
+        state: 'Estado B',
+        photo: 'photo2.jpg',
+        availableUnits: 3,
+        wifi: true,
+        laundry: false
+      },
+      {
+        id: 3,
+        name: 'Casa de Campo',
+        city: 'Ciudad C',
+        state: 'Estado C',
+        photo: 'photo3.jpg',
+        availableUnits: 7,
+        wifi: false,
+        laundry: true
+      }
+    ];
   }
 
-  async getHousingLocationById(id: number): Promise<HousingLocation | undefined> {
-    const data = await fetch(`${this.baseUrl}/${id}`);
-    return (await data.json()) ?? {};
+  // Método para obtener todas las ubicaciones de vivienda localmente
+  getAllHousingLocations(): Promise<HousingLocation[]> {
+    return Promise.resolve(this.housingLocationList);
+  }
+
+  // Método para obtener una ubicación de vivienda por ID localmente
+  getHousingLocationById(id: number): Promise<HousingLocation | undefined> {
+    const housingLocation = this.housingLocationList.find(loc => loc.id === id);
+    return Promise.resolve(housingLocation);
   }
 
   submitApplication(firstName: string, lastName: string, email: string) {
     console.log(
-      `Homes application received: firstName: ${firstName}, lastName: ${lastName}, email: ${email}.`,
+      `Homes application received: firstName: ${firstName}, lastName: ${lastName}, email: ${email}.`
     );
   }
 }

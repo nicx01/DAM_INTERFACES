@@ -1,10 +1,10 @@
 <section>
   <form>
-    <input type="text" placeholder="Filter by city" #filtro/>
+    <input type="text" placeholder="Filter by product name" #filtro />
     <button class="primary" type="button" (click)="filterResults(filtro.value)">Search</button>
   </form>
 </section>
 
 <section class="results">
-  <app-housing-location *ngFor="let housingLocation of filteredLocationList" [housingLocation]="housingLocation"></app-housing-location>
+  <app-product *ngFor="let product of filteredProductList" [product]="product"></app-product>
 </section>
