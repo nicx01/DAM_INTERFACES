@@ -18,9 +18,14 @@ export class DetailsComponent {
   constructor() {
     const productId = parseInt(this.route.snapshot.params['id'], 10);
 
-    this.productService.getProductById(productId).then((product) => {
-      this.product = product;
-    });
+    this.productService.getProductById(productId).subscribe(
+      (product: Product) => {
+        this.product = product;  
+      },
+      (error) => {
+        console.error('Error al obtener el producto:', error);
+      }
+    );
   }
 
   navigateToBidPage() {

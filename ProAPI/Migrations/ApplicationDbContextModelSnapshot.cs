@@ -225,6 +225,37 @@ namespace RestAPI.Migrations
                     b.ToTable("AspNetUsers", (string)null);
                 });
 
+            modelBuilder.Entity("RestAPI.Models.Entity.BapeEntity", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasMaxLength(50)
+                        .HasColumnType("nvarchar(50)");
+
+                    b.Property<string>("Photo")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<float>("ResellPrice")
+                        .HasColumnType("real");
+
+                    b.Property<float>("RetailPrice")
+                        .HasColumnType("real");
+
+                    b.Property<int>("Year")
+                        .HasColumnType("int");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Bapes");
+                });
+
             modelBuilder.Entity("RestAPI.Models.Entity.Category", b =>
                 {
                     b.Property<int>("Id")
@@ -307,6 +338,30 @@ namespace RestAPI.Migrations
                         .IsUnique();
 
                     b.ToTable("Libros");
+                });
+
+            modelBuilder.Entity("RestAPI.Models.Entity.ProcessorEntity", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<int>("Año")
+                        .HasColumnType("int");
+
+                    b.Property<string>("Marca")
+                        .IsRequired()
+                        .HasMaxLength(100)
+                        .HasColumnType("nvarchar(100)");
+
+                    b.Property<decimal>("Precio")
+                        .HasColumnType("decimal(18,2)");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Processors");
                 });
 
             modelBuilder.Entity("RestAPI.Models.Entity.SovietTankEntity", b =>

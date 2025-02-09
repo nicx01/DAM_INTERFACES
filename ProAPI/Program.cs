@@ -29,6 +29,7 @@ builder.Services.AddScoped<IUserRepository, UserRepository>();
 builder.Services.AddScoped<IProcessorRepository, ProcessorRepository>();
 builder.Services.AddScoped<ILibroRepository, LibroRepository>();
 builder.Services.AddScoped<ISovietTanksRepository, SovietTankRepository>();
+builder.Services.AddScoped<IBapeRepository, BapeRepository>();
 builder.Services.AddScoped<IEditorialRepository, EditorialRepository>();
 builder.Services.AddAutoMapper(typeof(ApplicationMapper));
 //Logger setup

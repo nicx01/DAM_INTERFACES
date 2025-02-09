@@ -6,8 +6,8 @@
     </div>
   
     <div>
-      <p><strong>Precio original:</strong> ${{ product?.retail_price }}</p>
-      <p><strong>Precio de reventa:</strong> ${{ product?.resell_price }}</p>
+      <p><strong>Precio original:</strong> ${{ product?.retailPrice }}</p>
+      <p><strong>Precio de reventa:</strong> ${{ product?.resellPrice }}</p>
     </div>
     
     <div class="bid-form-container">
@@ -18,7 +18,7 @@
           type="number"
           name="bidAmount"
           required
-          min="{{ product?.resell_price }}"
+          min="{{ product?.resellPrice }}"
           placeholder="Introduce tu puja"
         />
         <button type="submit" class="bid-button">Pujar</button>

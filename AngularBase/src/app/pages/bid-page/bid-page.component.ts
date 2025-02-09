@@ -9,7 +9,6 @@ import { Product } from 'src/app/models/product';
   styleUrls: ['./bid-page.component.css']
 })
 export class BidPageComponent implements OnInit {
-
   productId: number | undefined;
   product: Product | undefined;
 
@@ -18,11 +17,18 @@ export class BidPageComponent implements OnInit {
     private productService: ProductService
   ) {}
 
-  async ngOnInit(): Promise<void> {
+  ngOnInit(): void {
     this.productId = parseInt(this.route.snapshot.paramMap.get('id')!, 10);
 
     if (this.productId) {
-      this.product = await this.productService.getProductById(this.productId);
+      this.productService.getProductById(this.productId).subscribe(
+        (product: Product) => {
+          this.product = product; // Asignamos el producto recibido
+        },
+        (error) => {
+          console.error('Error al obtener el producto:', error);
+        }
+      );
     }
   }
 }

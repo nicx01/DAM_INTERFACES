@@ -13,14 +13,35 @@ import { ProductService } from '../../services/product.service';
 export class HomeComponent implements OnInit {
   productList: Product[] = [];
   filteredProductList: Product[] = [];
+  errorMessage: string = '';
 
   constructor(private productService: ProductService) {}
 
   ngOnInit(): void {
-    this.productService.getAllProducts().then((productList: Product[]) => {
-      this.productList = productList;
-      this.filteredProductList = productList;
-    });
+    this.productService.login('nico', 'Nico1234!')
+      .subscribe(
+        (response: any) => {
+          this.loadProducts(); 
+        },
+        (error) => {
+          this.errorMessage = 'Login failed';
+          console.error('Login error:', error); 
+        }
+      );
+  }
+  
+
+  loadProducts(): void {
+    this.productService.getAllProducts()
+      .subscribe(
+        (data: Product[]) => {
+          this.productList = data;
+          this.filteredProductList = data;
+        },
+        (error) => {
+          this.errorMessage = 'Failed to load products';
+        }
+      );
   }
 
   filterResults(text: string) {

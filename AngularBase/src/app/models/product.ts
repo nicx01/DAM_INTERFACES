@@ -2,8 +2,8 @@
     id: number;
     name: string;
     photo: string;
-    retail_price: number;
-    resell_price: number;
+    retailPrice: number;
+    resellPrice: number;
     year: number;
   }
   

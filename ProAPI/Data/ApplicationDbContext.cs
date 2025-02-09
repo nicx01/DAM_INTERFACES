@@ -21,6 +21,7 @@ namespace ApiPelicula.Data
         public DbSet<LibroEntity> Libros { get; set; }
         public DbSet<EditorialEntity> Editoriales { get; set; }
         public DbSet<SovietTankEntity> SovietTanks { get;set; }
+        public DbSet<BapeEntity> Bapes { get;set; }
         public DbSet<ProcessorEntity> Processors { get;set; }
 
     }
