@@ -8,9 +8,13 @@ import { Observable } from 'rxjs';
 export class ProductService {
   private apiUrl = 'https://localhost:7777/api/Bape';
   private authUrl = 'https://localhost:7777/api/users/login';
-  private token: string = '';
+  private pujaUrl= 'https://localhost:7777/api/Puja'
+  private token: string | null = null;
 
-  constructor() {}
+  constructor() {
+    // Recuperar el token desde localStorage al inicializar el servicio
+    this.token = localStorage.getItem('authToken');
+  }
 
   login(userName: string, password: string): Observable<any> {
     const credentials = { userName, password };
@@ -23,7 +27,7 @@ export class ProductService {
       .then(response => response.json())
       .then(data => {
         console.log('Login response:', data);
-        if (data && data.result && data.result.token) {
+        if (data?.result?.token) {
           this.setToken(data.result.token);
         }
         observer.next(data);
@@ -34,10 +38,18 @@ export class ProductService {
     });
   }
   
-
   setToken(token: string): void {
-    console.log(token)
     this.token = token;
+    localStorage.setItem('authToken', token);
+  }
+
+  getToken(): string | null {
+    return this.token || localStorage.getItem('authToken');
+  }
+
+  logout(): void {
+    this.token = null;
+    localStorage.removeItem('authToken');
   }
 
   getAllProducts(): Observable<Product[]> {
@@ -49,18 +61,18 @@ export class ProductService {
       })
       .then(response => response.json())
       .then(data => {
-        console.log('Response from getAllProducts:', data);  // Log para ver la respuesta
+        console.log('Response from getAllProducts:', data);
         observer.next(data);
       })
       .catch(error => {
-        console.error('Error in getAllProducts:', error);  // Log de error si algo falla
+        console.error('Error in getAllProducts:', error);
         observer.error(error);
       });
     });
   }
   
-
   getProductById(id: number): Observable<Product> {
+    console.log(id, this.token);
     return new Observable<Product>(observer => {
       const headers = this.createAuthHeaders();
       console.log(headers);
@@ -80,8 +92,51 @@ export class ProductService {
 
   private createAuthHeaders(): { [key: string]: string } {
     return {
-      'Authorization': `Bearer ${this.token}`,
+      'Authorization': `Bearer ${this.getToken()}`,
       'Content-Type': 'application/json',
     };
   }
+  placeBid(bidData: { price: number; productId: number }): Observable<any> {
+    return new Observable<any>(observer => {
+      const headers = this.createAuthHeaders();
+  
+      fetch(this.pujaUrl, {
+        method: 'POST',
+        headers: headers,
+        body: JSON.stringify(bidData)
+      })
+      .then(response => response.json())
+      .then(data => {
+        observer.next(data);
+      })
+      .catch(error => {
+        observer.error(error);
+      });
+    });
+  }
+  
+  getHighestBidForProduct(productId: number): Observable<any> {
+    return new Observable<any>(observer => {
+      const headers = this.createAuthHeaders();
+      fetch(this.pujaUrl, {
+        method: 'GET',
+        headers: headers
+      })
+      .then(response => response.json())
+      .then((bids: any[]) => {
+        const filteredBids = bids.filter(bid => bid.productId === productId);
+  
+        if (filteredBids.length === 0) {
+          observer.next(null); 
+        } else {
+          const highestBid = filteredBids.reduce((prev, current) => (prev.price > current.price ? prev : current));
+          observer.next(highestBid);
+        }
+      })
+      .catch(error => {
+        observer.error(error);
+      });
+    });
+  }
+  
 }

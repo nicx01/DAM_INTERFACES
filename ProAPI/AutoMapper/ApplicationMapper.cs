@@ -19,8 +19,10 @@ namespace ApiPelicula.AutoMapper
             CreateMap<EditorialEntity, EditorialDTO>().ReverseMap();
             CreateMap<EditorialEntity, CreateEditorialDTO>().ReverseMap();
             CreateMap<SovietTankEntity, SovietTankDTO>().ReverseMap();
+            CreateMap<PujaEntity, PujaDTO>().ReverseMap();
             CreateMap<BapeEntity, BapeDTO>().ReverseMap();
             CreateMap<CreateSovietTankDTO, SovietTankEntity>().ReverseMap();
+            CreateMap<CreatePujaDTO, PujaEntity>().ReverseMap();
             CreateMap<CreateBapeDTO, BapeEntity>().ReverseMap();
             CreateMap<AppUser, UserDto>().ReverseMap();
             CreateMap<ProcessorDto, ProcessorEntity>().ReverseMap();

@@ -364,6 +364,31 @@ namespace RestAPI.Migrations
                     b.ToTable("Processors");
                 });
 
+            modelBuilder.Entity("RestAPI.Models.Entity.PujaEntity", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<DateTime>("CreatedDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<float>("Price")
+                        .HasColumnType("real");
+
+                    b.Property<float>("ProductId")
+                        .HasColumnType("real");
+
+                    b.Property<int>("Year")
+                        .HasColumnType("int");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Pujas");
+                });
+
             modelBuilder.Entity("RestAPI.Models.Entity.SovietTankEntity", b =>
                 {
                     b.Property<int>("Id")
